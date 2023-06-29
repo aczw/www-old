@@ -19,11 +19,19 @@ function Square({
 }
 
 function Board() {
+  const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState<string[]>(Array(9).fill(""));
 
   function handleClick(index: number) {
+    // empty string is a falsy value... apparently
+    if (squares[index]) {
+      return;
+    }
+
     const nextSquares = squares.slice();
-    nextSquares[index] = "X";
+
+    nextSquares[index] = xIsNext ? "X" : "O";
+    setXIsNext(!xIsNext);
 
     setSquares(nextSquares);
   }
