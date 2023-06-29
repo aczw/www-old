@@ -1,3 +1,4 @@
+import assert from "assert";
 import Head from "next/head";
 import { useState } from "react";
 
@@ -18,13 +19,46 @@ function Square({
   );
 }
 
+function calculateWinner(squares: string[]) {
+  const winningLines = [
+    // horizontal
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+
+    // vertical
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+
+    // diagonal
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  for (const [a, b, c] of winningLines) {
+    assert(a !== undefined);
+    assert(b !== undefined);
+    assert(c !== undefined);
+
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a] as string;
+    }
+  }
+
+  return "";
+}
+
 function Board() {
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState<string[]>(Array(9).fill(""));
 
+  const winner = calculateWinner(squares);
+  const status = winner ? `winner: ${winner}` : `next player: ${xIsNext ? "X" : "O"}`;
+
   function handleClick(index: number) {
-    // empty string is a falsy value... apparently
-    if (squares[index]) {
+    // a nonempty string is truthy apparently
+    if (squares[index] || winner) {
       return;
     }
 
@@ -38,6 +72,7 @@ function Board() {
 
   return (
     <div>
+      <div className="my-2">{status}</div>
       <div>
         <Square
           value={squares[0]}
@@ -84,7 +119,7 @@ function Board() {
   );
 }
 
-export default function Wrapper() {
+export default function Game() {
   return (
     <>
       <Head>
