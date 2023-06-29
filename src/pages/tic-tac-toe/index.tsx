@@ -2,13 +2,7 @@ import assert from "assert";
 import Head from "next/head";
 import { useState } from "react";
 
-function Square({
-  value,
-  onSquareClick,
-}: {
-  value: string | undefined;
-  onSquareClick: () => void;
-}) {
+function Square({ value, onSquareClick }: { value: string; onSquareClick: () => void }) {
   return (
     <button
       className="float-left -mr-[2px] -mt-[2px] h-12 w-12 border-2 border-black text-center text-2xl"
@@ -37,12 +31,18 @@ function calculateWinner(squares: string[]) {
   ];
 
   for (const [a, b, c] of winningLines) {
-    assert(a !== undefined);
-    assert(b !== undefined);
-    assert(c !== undefined);
+    // necessary because noUncheckedIndexedAccess flag is true
+    assert(typeof a === "number");
+    assert(typeof b === "number");
+    assert(typeof c === "number");
 
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a] as string;
+      // also necessary because squares[a] inherently has type string | undefined, so we can't
+      // return it. instead, we can return a variable and assert its type beforehand
+      const winner = squares[a];
+      assert(typeof winner === "string");
+
+      return winner;
     }
   }
 
@@ -53,65 +53,65 @@ function Board() {
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState<string[]>(Array(9).fill(""));
 
-  const winner = calculateWinner(squares);
-  const status = winner ? `winner: ${winner}` : `next player: ${xIsNext ? "X" : "O"}`;
-
   function handleClick(index: number) {
-    // a nonempty string is truthy apparently
+    // a nonempty string is truthy apparently...
+    // also disable board interaction if there's a winner
     if (squares[index] || winner) {
       return;
     }
 
     const nextSquares = squares.slice();
-
     nextSquares[index] = xIsNext ? "X" : "O";
     setXIsNext(!xIsNext);
 
     setSquares(nextSquares);
   }
 
+  const winner = calculateWinner(squares);
+  const status = winner ? `winner: ${winner}` : `next player: ${xIsNext ? "X" : "O"}`;
+
   return (
     <div>
       <div className="my-2">{status}</div>
       <div>
         <Square
-          value={squares[0]}
+          value={squares[0] ?? ""}
           onSquareClick={() => handleClick(0)}
         />
         <Square
-          value={squares[1]}
+          value={squares[1] ?? ""}
           onSquareClick={() => handleClick(1)}
         />
         <Square
-          value={squares[2]}
+          value={squares[2] ?? ""}
           onSquareClick={() => handleClick(2)}
         />
       </div>
       <div>
         <Square
-          value={squares[3]}
+          value={squares[3] ?? ""}
           onSquareClick={() => handleClick(3)}
         />
         <Square
-          value={squares[4]}
+          value={squares[4] ?? ""}
           onSquareClick={() => handleClick(4)}
         />
         <Square
-          value={squares[5]}
+          value={squares[5] ?? ""}
           onSquareClick={() => handleClick(5)}
         />
       </div>
       <div>
         <Square
-          value={squares[6]}
+          value={squares[6] ?? ""}
           onSquareClick={() => handleClick(6)}
         />
         <Square
-          value={squares[7]}
+          value={squares[7] ?? ""}
           onSquareClick={() => handleClick(7)}
         />
         <Square
-          value={squares[8]}
+          value={squares[8] ?? ""}
           onSquareClick={() => handleClick(8)}
         />
       </div>
