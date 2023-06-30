@@ -73,28 +73,18 @@ function Board({
     onPlay(nextSquares);
   }
 
-  const board: React.ReactElement[] = [];
-
-  for (let i = 0; i < 3; i++) {
-    board.push(
-      <div>
-        {Array(3)
-          .fill(<></>)
-          .map((_, j) => (
-            <Square
-              key={j + i * 3}
-              value={squares[j + i * 3] ?? ""}
-              onSquareClick={() => handleClick(j + i * 3)}
-            />
-          ))}
-      </div>
-    );
-  }
-
   return (
-    <>
-      <div>{board}</div>
-    </>
+    <div className="grid grid-cols-3 grid-rows-3">
+      {Array(9)
+        .fill(<></>)
+        .map((_, index) => (
+          <Square
+            key={index}
+            value={squares[index] ?? ""}
+            onSquareClick={() => handleClick(index)}
+          />
+        ))}
+    </div>
   );
 }
 
