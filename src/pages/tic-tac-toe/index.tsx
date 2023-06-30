@@ -136,28 +136,26 @@ export default function Game() {
     setCurrentMove(move);
   }
 
-  // because player X only moves on even indices
-  const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
   assert(typeof currentSquares === "object");
-
   const winner = calculateWinner(currentSquares);
-  const status = winner ? `${winner} is the winner!` : `${xIsNext ? "X" : "O"}'s turn`;
 
   const moves = history.map((_, move) => {
-    const description = move > 0 ? `go to move #${move}` : "go to game start";
-
     return (
       <li key={move}>
         <button
           className="rounded-md border-2 border-black bg-slate-100 px-1"
           onClick={() => jumpTo(move)}
         >
-          {description}
+          {move > 0 ? `go to move #${move}` : "go to game start"}
         </button>
       </li>
     );
   });
+
+  // because player X only moves on even indices, and Y on odd
+  const xIsNext = currentMove % 2 === 0;
+  const status = winner ? `${winner} is the winner!` : `${xIsNext ? "X" : "O"}'s turn`;
 
   return (
     <>
