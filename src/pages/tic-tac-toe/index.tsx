@@ -106,6 +106,10 @@ export default function Game() {
   const winner = calculateWinner(currentSquares);
 
   const moves = history.map((_, move) => {
+    if (move === currentMove) {
+      return;
+    }
+
     return (
       <li key={move}>
         <button
