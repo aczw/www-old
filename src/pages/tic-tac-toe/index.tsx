@@ -52,16 +52,18 @@ function calculateWinner(squares: string[]) {
 function Board({
   xIsNext,
   squares,
+  gameWon,
   onPlay,
 }: {
   xIsNext: boolean;
   squares: string[];
+  gameWon: string;
   onPlay: (nextSquares: string[]) => void;
 }) {
   function handleClick(index: number) {
     // a nonempty string is truthy apparently...
     // also disable board interaction if there's a winner
-    if (squares[index] || winner) {
+    if (squares[index] || gameWon) {
       return;
     }
 
@@ -70,8 +72,6 @@ function Board({
 
     onPlay(nextSquares);
   }
-
-  const winner = calculateWinner(squares);
 
   return (
     <>
@@ -139,7 +139,6 @@ export default function Game() {
   // because player X only moves on even indices
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
-
   assert(typeof currentSquares === "object");
 
   const winner = calculateWinner(currentSquares);
@@ -171,6 +170,7 @@ export default function Game() {
           <Board
             xIsNext={xIsNext}
             squares={currentSquares ?? Array(9).fill("")}
+            gameWon={winner}
             onPlay={handlePlay}
           />
           <p>{currentMove > 0 ? `you're on move #${currentMove}` : "game start!"}</p>
