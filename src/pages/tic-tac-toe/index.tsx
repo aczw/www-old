@@ -49,10 +49,15 @@ function calculateWinner(squares: string[]) {
   return "";
 }
 
-function Board() {
-  const [xIsNext, setXIsNext] = useState(true);
-  const [squares, setSquares] = useState<string[]>(Array(9).fill(""));
-
+function Board({
+  xIsNext,
+  squares,
+  onPlay,
+}: {
+  xIsNext: boolean;
+  squares: string[];
+  onPlay: (nextSquares: string[]) => void;
+}) {
   function handleClick(index: number) {
     // a nonempty string is truthy apparently...
     // also disable board interaction if there's a winner
@@ -62,9 +67,8 @@ function Board() {
 
     const nextSquares = squares.slice();
     nextSquares[index] = xIsNext ? "X" : "O";
-    setXIsNext(!xIsNext);
 
-    setSquares(nextSquares);
+    onPlay(nextSquares);
   }
 
   const winner = calculateWinner(squares);
@@ -120,13 +124,30 @@ function Board() {
 }
 
 export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState<string[][]>([Array(9).fill("")]);
+
+  const currentSquares = history[history.length - 1];
+
+  function handlePlay(nextSquares: string[]) {
+    setXIsNext(!xIsNext);
+    setHistory([...history, nextSquares]);
+  }
+
   return (
     <>
       <Head>
         <title>tic tac toe</title>
       </Head>
       <main className="flex min-h-screen items-center justify-center">
-        <Board />
+        <Board
+          xIsNext={xIsNext}
+          squares={currentSquares ?? Array(9).fill("")}
+          onPlay={handlePlay}
+        />
+        <div className="ml-5">
+          <ol>{"hi"}</ol>
+        </div>
       </main>
     </>
   );
