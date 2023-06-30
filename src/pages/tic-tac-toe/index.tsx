@@ -110,13 +110,22 @@ export default function Game() {
       return;
     }
 
+    let description;
+    if (move > currentMove) {
+      description = `go back to move #${move}`;
+    } else if (move > 0) {
+      description = `go to move #${move}`;
+    } else {
+      description = "go to game start";
+    }
+
     return (
       <li key={move}>
         <button
           className="rounded-md border-2 border-black bg-slate-100 px-1"
           onClick={() => jumpTo(move)}
         >
-          {move > 0 ? `go to move #${move}` : "go to game start"}
+          {description}
         </button>
       </li>
     );
@@ -143,7 +152,7 @@ export default function Game() {
           <p>{currentMove > 0 ? `you're on move #${currentMove}` : "game start!"}</p>
         </div>
         <div>
-          <ol className="list-inside list-decimal space-y-1">{moves}</ol>
+          <ol className="space-y-1">{moves}</ol>
         </div>
       </main>
     </>
