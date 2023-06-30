@@ -124,29 +124,52 @@ function Board({
 }
 
 export default function Game() {
-  const [xIsNext, setXIsNext] = useState(true);
   const [history, setHistory] = useState<string[][]>([Array(9).fill("")]);
-
-  const currentSquares = history[history.length - 1];
+  const [currentMove, setCurrentMove] = useState(0);
 
   function handlePlay(nextSquares: string[]) {
-    setXIsNext(!xIsNext);
-    setHistory([...history, nextSquares]);
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
   }
+
+  function jumpTo(move: number) {
+    setCurrentMove(move);
+  }
+
+  // because player X only moves on even indices
+  const xIsNext = currentMove % 2 === 0;
+  const currentSquares = history[currentMove];
+
+  const moves = history.map((_, move) => {
+    const description = move > 0 ? `go to move #${move}` : "go to game start";
+
+    return (
+      <li key={move}>
+        <button
+          className="rounded-md border-2 border-black bg-slate-100 px-1"
+          onClick={() => jumpTo(move)}
+        >
+          {description}
+        </button>
+      </li>
+    );
+  });
 
   return (
     <>
       <Head>
         <title>tic tac toe</title>
       </Head>
-      <main className="flex min-h-screen items-center justify-center">
+      <main className="flex min-h-screen items-center justify-center gap-5">
         <Board
           xIsNext={xIsNext}
           squares={currentSquares ?? Array(9).fill("")}
           onPlay={handlePlay}
         />
-        <div className="ml-5">
-          <ol>{"hi"}</ol>
+        <div>
+          <ol className="list-inside list-decimal space-y-1">{moves}</ol>
         </div>
       </main>
     </>
