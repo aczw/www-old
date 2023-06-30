@@ -5,7 +5,7 @@ import { useState } from "react";
 function Square({ value, onSquareClick }: { value: string; onSquareClick: () => void }) {
   return (
     <button
-      className="float-left -mr-[2px] -mt-[2px] h-12 w-12 border-2 border-black text-center text-2xl"
+      className="float-left -mr-[2px] -mt-[2px] h-12 w-12 border-2 border-black bg-white text-center text-2xl"
       onClick={onSquareClick}
     >
       {value}
@@ -72,11 +72,9 @@ function Board({
   }
 
   const winner = calculateWinner(squares);
-  const status = winner ? `${winner} is the winner!` : `${xIsNext ? "X" : "O"}'s turn`;
 
   return (
-    <div>
-      <div className="my-2">{status}</div>
+    <>
       <div>
         <Square
           value={squares[0] ?? ""}
@@ -119,7 +117,7 @@ function Board({
           onSquareClick={() => handleClick(8)}
         />
       </div>
-    </div>
+    </>
   );
 }
 
@@ -142,6 +140,11 @@ export default function Game() {
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
 
+  assert(typeof currentSquares === "object");
+
+  const winner = calculateWinner(currentSquares);
+  const status = winner ? `${winner} is the winner!` : `${xIsNext ? "X" : "O"}'s turn`;
+
   const moves = history.map((_, move) => {
     const description = move > 0 ? `go to move #${move}` : "go to game start";
 
@@ -163,11 +166,15 @@ export default function Game() {
         <title>tic tac toe</title>
       </Head>
       <main className="flex min-h-screen items-center justify-center gap-5">
-        <Board
-          xIsNext={xIsNext}
-          squares={currentSquares ?? Array(9).fill("")}
-          onPlay={handlePlay}
-        />
+        <div>
+          <p>{status}</p>
+          <Board
+            xIsNext={xIsNext}
+            squares={currentSquares ?? Array(9).fill("")}
+            onPlay={handlePlay}
+          />
+          <p>{currentMove > 0 ? `you're on move #${currentMove}` : "game start!"}</p>
+        </div>
         <div>
           <ol className="list-inside list-decimal space-y-1">{moves}</ol>
         </div>
