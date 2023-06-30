@@ -1,6 +1,6 @@
 import assert from "assert";
 import Head from "next/head";
-import { useState } from "react";
+import { useState, type ReactElement } from "react";
 
 function Square({ value, onSquareClick }: { value: string; onSquareClick: () => void }) {
   return (
@@ -75,15 +75,13 @@ function Board({
 
   return (
     <div className="grid grid-cols-3 grid-rows-3">
-      {Array(9)
-        .fill(<></>)
-        .map((_, index) => (
-          <Square
-            key={index}
-            value={squares[index] ?? ""}
-            onSquareClick={() => handleClick(index)}
-          />
-        ))}
+      {[...Array<ReactElement>(9)].map((_, index) => (
+        <Square
+          key={index}
+          value={squares[index] ?? ""}
+          onSquareClick={() => handleClick(index)}
+        />
+      ))}
     </div>
   );
 }
