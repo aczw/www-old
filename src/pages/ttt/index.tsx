@@ -2,10 +2,20 @@ import assert from "assert";
 import Head from "next/head";
 import { useState, type ReactElement } from "react";
 
-function Square({ value, onSquareClick }: { value: string; onSquareClick: () => void }) {
+function Square({
+  value,
+  won,
+  onSquareClick,
+}: {
+  value: string;
+  won: boolean;
+  onSquareClick: () => void;
+}) {
+  const color = won ? "green-500" : "white";
+
   return (
     <button
-      className="float-left -mr-[2px] -mt-[2px] h-12 w-12 border-2 border-black bg-white text-center text-2xl"
+      className={`float-left -mr-[2px] -mt-[2px] h-12 w-12 border-2 border-black bg-${color} text-center text-2xl`}
       onClick={onSquareClick}
     >
       {value}
@@ -43,6 +53,7 @@ function Board({
         <Square
           key={index}
           value={squares[index] ?? ""}
+          won={false}
           onSquareClick={() => handleClick(index)}
         />
       ))}
@@ -125,13 +136,15 @@ export default function Game() {
     );
   });
 
-  const currentSquares = history[currentMove];
-  assert(typeof currentSquares === "object");
-  const winner = calculateWinner(currentSquares);
-
   // because player X only moves on even indices, and Y on odd
   const xIsNext = currentMove % 2 === 0;
-  const status = winner ? `${winner} is the winner!` : `${xIsNext ? "X" : "O"}'s turn`;
+  const currentSquares = history[currentMove];
+
+  assert(typeof currentSquares === "object");
+
+  // TODO: modify calculateWinner() to return the array of indices so that we can pass it into the
+  // <Board /> prop and have it render squares either green (won) or white (normal)
+  const winner = calculateWinner(currentSquares);
 
   return (
     <>
@@ -140,10 +153,10 @@ export default function Game() {
       </Head>
       <main className="flex min-h-screen items-center justify-center gap-5">
         <div>
-          <p>{status}</p>
+          <p>{winner ? `${winner} is the winner!` : `${xIsNext ? "X" : "O"}'s turn`}</p>
           <Board
             xIsNext={xIsNext}
-            squares={currentSquares ?? Array(9).fill("")}
+            squares={currentSquares}
             gameWon={winner}
             onPlay={handlePlay}
           />
