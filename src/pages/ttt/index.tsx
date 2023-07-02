@@ -173,13 +173,19 @@ export default function Game() {
 
   function jumpTo(move: number) {
     setCurrentMove(move);
+    setGameWon(calculateWinner(getCurrentSquares(move)));
   }
 
-  const currentSquares = history[currentMove];
-  assert(Array.isArray(currentSquares));
+  function getCurrentSquares(move: number) {
+    const squares = history[move];
+    assert(Array.isArray(squares));
+
+    return squares;
+  }
 
   // because player X only moves on even indices, and Y on odd
   const xIsNext = currentMove % 2 === 0;
+  const currentSquares = getCurrentSquares(currentMove);
 
   let status;
   if (gameWon.length > 0) {
