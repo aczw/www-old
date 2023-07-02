@@ -11,11 +11,11 @@ function Square({
   won: boolean;
   onSquareClick: () => void;
 }) {
-  const background = won ? "green-300" : "white";
+  const background = won ? "bg-green-300" : "bg-white";
 
   return (
     <button
-      className={`float-left -mr-[2px] -mt-[2px] h-12 w-12 border-2 border-black bg-${background} text-center text-3xl`}
+      className={`float-left -mr-[2px] -mt-[2px] h-12 w-12 border-2 border-black ${background} text-center text-3xl`}
       onClick={onSquareClick}
     >
       {value}
