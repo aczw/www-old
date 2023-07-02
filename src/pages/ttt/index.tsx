@@ -15,7 +15,7 @@ function Square({
 
   return (
     <button
-      className={`float-left -mr-[2px] -mt-[2px] h-12 w-12 border-2 border-black bg-${color} text-center text-2xl`}
+      className={`float-left -mr-[2px] -mt-[2px] h-12 w-12 border-2 border-black bg-${color} text-center text-3xl`}
       onClick={onSquareClick}
     >
       {value}
@@ -144,18 +144,18 @@ function MoveList({
   });
 
   return (
-    <>
-      <p>move list</p>
+    <div className="rounded-xl bg-slate-100 p-3">
+      <p className="ml-3">move list</p>
       <button
-        className="mb-5 rounded-md border-2 border-black bg-slate-300 px-1"
+        className="mb-5 ml-3 rounded-md border-2 border-black bg-slate-300 px-1"
         onClick={() => setReverse(!reverse)}
       >
         reverse move list
       </button>
-      <div>
+      <div className="rounded-xl bg-slate-50 p-3">
         <ol className="space-y-1">{reverse ? moves.slice().reverse() : moves}</ol>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -190,7 +190,7 @@ export default function Game() {
         <title>tic tac toe</title>
       </Head>
       <main className="flex min-h-screen items-center justify-center gap-5">
-        <div>
+        <div className="rounded-xl bg-slate-100 p-3">
           <p>{winner ? `${winner} is the winner!` : `${xIsNext ? "X" : "O"}'s turn`}</p>
           <Board
             xIsNext={xIsNext}
