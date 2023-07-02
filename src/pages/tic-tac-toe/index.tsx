@@ -13,42 +13,6 @@ function Square({ value, onSquareClick }: { value: string; onSquareClick: () => 
   );
 }
 
-function calculateWinner(squares: string[]) {
-  const winningLines = [
-    // horizontal
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-
-    // vertical
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-
-    // diagonal
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-
-  for (const [a, b, c] of winningLines) {
-    // necessary because noUncheckedIndexedAccess flag is true
-    assert(typeof a === "number");
-    assert(typeof b === "number");
-    assert(typeof c === "number");
-
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      // also necessary because squares[a] inherently has type string | undefined, so we can't
-      // return it. instead, we can return a variable and assert its type beforehand
-      const winner = squares[a];
-      assert(typeof winner === "string");
-
-      return winner;
-    }
-  }
-
-  return "";
-}
-
 function Board({
   xIsNext,
   squares,
@@ -86,6 +50,42 @@ function Board({
   );
 }
 
+function calculateWinner(squares: string[]) {
+  const winningLines = [
+    // horizontal
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+
+    // vertical
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+
+    // diagonal
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  for (const [a, b, c] of winningLines) {
+    // necessary because noUncheckedIndexedAccess flag is true
+    assert(typeof a === "number");
+    assert(typeof b === "number");
+    assert(typeof c === "number");
+
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      // also necessary because squares[a] inherently has type string | undefined, so we can't
+      // return it. instead, we can return a variable and assert its type beforehand
+      const winner = squares[a];
+      assert(typeof winner === "string");
+
+      return winner;
+    }
+  }
+
+  return "";
+}
+
 export default function Game() {
   const [history, setHistory] = useState<string[][]>([Array(9).fill("")]);
   const [currentMove, setCurrentMove] = useState(0);
@@ -101,23 +101,17 @@ export default function Game() {
     setCurrentMove(move);
   }
 
-  const currentSquares = history[currentMove];
-  assert(typeof currentSquares === "object");
-  const winner = calculateWinner(currentSquares);
-
   const moves = history.map((_, move) => {
     if (move === currentMove) {
       return;
     }
 
-    let description;
-    if (move > currentMove) {
-      description = `go back to move #${move}`;
-    } else if (move > 0) {
-      description = `go to move #${move}`;
-    } else {
-      description = "go to game start";
-    }
+    const description =
+      move > currentMove
+        ? `go back to #${move}`
+        : move > 0
+        ? `go to move #${move}`
+        : "go to game start";
 
     return (
       <li key={move}>
@@ -130,6 +124,10 @@ export default function Game() {
       </li>
     );
   });
+
+  const currentSquares = history[currentMove];
+  assert(typeof currentSquares === "object");
+  const winner = calculateWinner(currentSquares);
 
   // because player X only moves on even indices, and Y on odd
   const xIsNext = currentMove % 2 === 0;
