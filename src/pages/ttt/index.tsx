@@ -104,20 +104,16 @@ function calculateWinner(squares: string[]) {
   return "";
 }
 
-export default function Game() {
-  const [history, setHistory] = useState<string[][]>([Array(9).fill("")]);
-  const [currentMove, setCurrentMove] = useState(0);
-
-  function handlePlay(nextSquares: string[]) {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
-
-    setHistory(nextHistory);
-    setCurrentMove(nextHistory.length - 1);
-  }
-
-  function jumpTo(move: number) {
-    setCurrentMove(move);
-  }
+function MoveList({
+  history,
+  currentMove,
+  jumpTo,
+}: {
+  history: string[][];
+  currentMove: number;
+  jumpTo: (move: number) => void;
+}) {
+  const [reverse, setReverse] = useState(false);
 
   const moves = history.map((_, moveIndex) => {
     const current = moveIndex === currentMove;
@@ -127,9 +123,9 @@ export default function Game() {
 
     let description = "go to game start";
     if (current) {
-      description = `you are here`;
+      description = currentMove === 0 ? "you're at game start!" : `you're on move #${moveIndex}`;
     } else if (moveIndex > currentMove) {
-      description = `go back to #${moveIndex}`;
+      description = `go back to move #${moveIndex}`;
     } else if (moveIndex > 0) {
       description = `go to move #${moveIndex}`;
     }
@@ -146,6 +142,37 @@ export default function Game() {
       </li>
     );
   });
+
+  return (
+    <>
+      <p>move list</p>
+      <button
+        className="mb-5 rounded-md border-2 border-black bg-slate-300 px-1"
+        onClick={() => setReverse(!reverse)}
+      >
+        reverse move list
+      </button>
+      <div>
+        <ol className="space-y-1">{reverse ? moves.slice().reverse() : moves}</ol>
+      </div>
+    </>
+  );
+}
+
+export default function Game() {
+  const [history, setHistory] = useState<string[][]>([Array(9).fill("")]);
+  const [currentMove, setCurrentMove] = useState(0);
+
+  function handlePlay(nextSquares: string[]) {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
+  }
+
+  function jumpTo(move: number) {
+    setCurrentMove(move);
+  }
 
   // because player X only moves on even indices, and Y on odd
   const xIsNext = currentMove % 2 === 0;
@@ -171,10 +198,13 @@ export default function Game() {
             gameWon={winner}
             onPlay={handlePlay}
           />
-          <p>{currentMove > 0 ? `you're on move #${currentMove}` : "game start!"}</p>
         </div>
         <div>
-          <ol className="space-y-1">{moves}</ol>
+          <MoveList
+            history={history}
+            currentMove={currentMove}
+            jumpTo={jumpTo}
+          />
         </div>
       </main>
     </>
