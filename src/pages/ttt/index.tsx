@@ -2,17 +2,17 @@ import assert from "assert";
 import Head from "next/head";
 import { useState, type ReactElement } from "react";
 
+type GameState = { s: "Playing" } | { s: "Draw" } | { s: "Win"; a: number; b: number; c: number };
+
 function Square({
   value,
-  won,
+  background,
   onSquareClick,
 }: {
   value: string;
-  won: boolean;
+  background: string;
   onSquareClick: () => void;
 }) {
-  const background = won ? "bg-green-300" : "bg-white";
-
   return (
     <button
       className={`float-left -mr-[2px] -mt-[2px] h-12 w-12 border-2 border-black ${background} text-center text-3xl`}
@@ -26,18 +26,18 @@ function Square({
 function Board({
   xIsNext,
   squares,
-  gameWon,
+  gameState,
   onPlay,
 }: {
   xIsNext: boolean;
   squares: string[];
-  gameWon: number[];
+  gameState: GameState;
   onPlay: (nextSquares: string[]) => void;
 }) {
   function handleClick(index: number) {
     // a nonempty string is truthy apparently...
-    // also disable board interaction if there's a winner
-    if (squares[index] || gameWon.length > 0) {
+    // also disable board interaction if game is over (win or draw)
+    if (squares[index] || gameState.s !== "Playing") {
       return;
     }
 
@@ -48,27 +48,30 @@ function Board({
   }
 
   const grid: ReactElement[] = [];
+
   for (let i = 0; i < 9; i++) {
     const symbol = squares[i];
     assert(typeof symbol === "string");
 
-    let won;
-    if (gameWon.length > 0) {
-      const [a, b, c] = gameWon;
-      assert(typeof a === "number");
-      assert(typeof b === "number");
-      assert(typeof c === "number");
-
-      won = i === a || i === b || i === c;
-    } else {
-      won = false;
+    let background;
+    switch (gameState.s) {
+      case "Playing":
+        background = "bg-white";
+        break;
+      case "Draw":
+        background = "bg-yellow-200";
+        break;
+      case "Win":
+        background =
+          gameState.a === i || gameState.b === i || gameState.c === i ? "bg-green-300" : "bg-white";
+        break;
     }
 
     grid.push(
       <Square
         key={i}
         value={symbol}
-        won={won}
+        background={background}
         onSquareClick={() => handleClick(i)}
       />
     );
@@ -77,7 +80,7 @@ function Board({
   return <div className="grid grid-cols-3 grid-rows-3">{grid}</div>;
 }
 
-function calculateWinner(squares: string[]) {
+function calculateWinner(squares: string[]): GameState {
   const winningLines = [
     // horizontal
     [0, 1, 2],
@@ -94,6 +97,7 @@ function calculateWinner(squares: string[]) {
     [2, 4, 6],
   ];
 
+  // check for winner
   for (const [a, b, c] of winningLines) {
     // necessary because noUncheckedIndexedAccess flag is true
     assert(typeof a === "number");
@@ -103,12 +107,25 @@ function calculateWinner(squares: string[]) {
     // check that all three squares are not empty
     if (squares[a] && squares[b] && squares[c]) {
       if (squares[a] === squares[b] && squares[a] === squares[c] && squares[b] === squares[c]) {
-        return [a, b, c];
+        return { s: "Win", a, b, c };
       }
     }
   }
 
-  return [];
+  // check for draw. occurs when every square is filled
+  let count = 0;
+  squares.forEach((square) => {
+    if (square) {
+      count += 1;
+    }
+  });
+
+  if (count === 9) {
+    return { s: "Draw" };
+  }
+
+  // else, the game is still going on
+  return { s: "Playing" };
 }
 
 function MoveList({
@@ -168,19 +185,19 @@ function MoveList({
 export default function Game() {
   const [history, setHistory] = useState<string[][]>([Array(9).fill("")]);
   const [currentMove, setCurrentMove] = useState(0);
-  const [gameWon, setGameWon] = useState<number[]>([]);
+  const [gameState, setGameState] = useState<GameState>({ s: "Playing" });
 
   function handlePlay(nextSquares: string[]) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
 
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
-    setGameWon(calculateWinner(nextSquares));
+    setGameState(calculateWinner(nextSquares));
   }
 
   function jumpTo(move: number) {
     setCurrentMove(move);
-    setGameWon(calculateWinner(getCurrentSquares(move)));
+    setGameState(calculateWinner(getCurrentSquares(move)));
   }
 
   function getCurrentSquares(move: number) {
@@ -195,16 +212,19 @@ export default function Game() {
   const currentSquares = getCurrentSquares(currentMove);
 
   let status;
-  if (gameWon.length > 0) {
-    const winningIndex = gameWon[0];
-    assert(typeof winningIndex === "number");
+  switch (gameState.s) {
+    case "Playing":
+      status = `${xIsNext ? "X" : "O"}'s turn`;
+      break;
+    case "Draw":
+      status = "game draw!";
+      break;
+    case "Win":
+      const winningPlayer = currentSquares[gameState.a];
+      assert(typeof winningPlayer === "string");
 
-    const winningPlayer = currentSquares[winningIndex];
-    assert(typeof winningPlayer === "string");
-
-    status = `${winningPlayer} is the winner!`;
-  } else {
-    status = `${xIsNext ? "X" : "O"}'s turn`;
+      status = `${winningPlayer} is the winner!`;
+      break;
   }
 
   return (
@@ -218,7 +238,7 @@ export default function Game() {
           <Board
             xIsNext={xIsNext}
             squares={currentSquares}
-            gameWon={gameWon}
+            gameState={gameState}
             onPlay={handlePlay}
           />
         </div>
