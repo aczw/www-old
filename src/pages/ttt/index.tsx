@@ -4,14 +4,14 @@ import { useState, type ReactElement } from "react";
 
 function Square({
   value,
-  gameWon,
+  won,
   onSquareClick,
 }: {
   value: string;
-  gameWon: number[];
+  won: boolean;
   onSquareClick: () => void;
 }) {
-  const background = gameWon.length > 0 ? "bg-green-500" : "bg-white";
+  const background = won ? "bg-green-300" : "bg-white";
 
   return (
     <button
@@ -48,16 +48,27 @@ function Board({
   }
 
   const grid: ReactElement[] = [];
-
   for (let i = 0; i < 9; i++) {
     const symbol = squares[i];
     assert(typeof symbol === "string");
+
+    let won;
+    if (gameWon.length > 0) {
+      const [a, b, c] = gameWon;
+      assert(typeof a === "number");
+      assert(typeof b === "number");
+      assert(typeof c === "number");
+
+      won = i === a || i === b || i === c;
+    } else {
+      won = false;
+    }
 
     grid.push(
       <Square
         key={i}
         value={symbol}
-        gameWon={gameWon}
+        won={won}
         onSquareClick={() => handleClick(i)}
       />
     );
@@ -149,7 +160,7 @@ function MoveList({
         className="mb-5 ml-3 rounded-md border-2 border-black bg-slate-300 px-1"
         onClick={() => setReverse(!reverse)}
       >
-        reverse move list
+        reverse moves!
       </button>
       <div className="rounded-xl bg-slate-50 p-3">
         <ol className="space-y-1">{reverse ? moves.slice().reverse() : moves}</ol>
