@@ -176,7 +176,7 @@ export default function Game() {
   }
 
   const currentSquares = history[currentMove];
-  assert(typeof currentSquares === "object");
+  assert(Array.isArray(currentSquares));
 
   // because player X only moves on even indices, and Y on odd
   const xIsNext = currentMove % 2 === 0;
