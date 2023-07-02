@@ -47,18 +47,24 @@ function Board({
     onPlay(nextSquares);
   }
 
-  return (
-    <div className="grid grid-cols-3 grid-rows-3">
-      {[...Array<ReactElement>(9)].map((_, index) => (
-        <Square
-          key={index}
-          value={squares[index] ?? ""}
-          won={false}
-          onSquareClick={() => handleClick(index)}
-        />
-      ))}
-    </div>
-  );
+  const grid: ReactElement[] = [];
+
+  for (let i = 0; i < 9; i++) {
+    const symbol = squares[i];
+
+    assert(typeof symbol === "string");
+
+    grid.push(
+      <Square
+        key={i}
+        value={symbol}
+        won={false}
+        onSquareClick={() => handleClick(i)}
+      />
+    );
+  }
+
+  return <div className="grid grid-cols-3 grid-rows-3">{grid}</div>;
 }
 
 function calculateWinner(squares: string[]) {
@@ -88,6 +94,7 @@ function calculateWinner(squares: string[]) {
       // also necessary because squares[a] inherently has type string | undefined, so we can't
       // return it. instead, we can return a variable and assert its type beforehand
       const winner = squares[a];
+
       assert(typeof winner === "string");
 
       return winner;
