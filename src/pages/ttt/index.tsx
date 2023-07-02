@@ -151,12 +151,12 @@ function MoveList({
 
   return (
     <div className="rounded-xl bg-slate-100 p-3">
-      <p className="ml-3">move list</p>
+      <p className="ml-3">move history</p>
       <button
         className="mb-5 ml-3 rounded-md border-2 border-black bg-slate-300 px-1"
         onClick={() => setReverse(!reverse)}
       >
-        reverse moves!
+        reverse list!
       </button>
       <div className="rounded-xl bg-slate-50 p-3">
         <ol className="space-y-1">{reverse ? moves.slice().reverse() : moves}</ol>
@@ -222,13 +222,11 @@ export default function Game() {
             onPlay={handlePlay}
           />
         </div>
-        <div>
-          <MoveList
-            history={history}
-            currentMove={currentMove}
-            jumpTo={jumpTo}
-          />
-        </div>
+        <MoveList
+          history={history}
+          currentMove={currentMove}
+          jumpTo={jumpTo}
+        />
       </main>
     </>
   );
