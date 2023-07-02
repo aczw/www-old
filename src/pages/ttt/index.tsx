@@ -4,14 +4,14 @@ import { useState, type ReactElement } from "react";
 
 function Square({
   value,
-  won,
+  gameWon,
   onSquareClick,
 }: {
   value: string;
-  won: boolean;
+  gameWon: number[];
   onSquareClick: () => void;
 }) {
-  const background = won ? "bg-green-500" : "bg-white";
+  const background = gameWon.length > 0 ? "bg-green-500" : "bg-white";
 
   return (
     <button
@@ -31,13 +31,13 @@ function Board({
 }: {
   xIsNext: boolean;
   squares: string[];
-  gameWon: string;
+  gameWon: number[];
   onPlay: (nextSquares: string[]) => void;
 }) {
   function handleClick(index: number) {
     // a nonempty string is truthy apparently...
     // also disable board interaction if there's a winner
-    if (squares[index] || gameWon) {
+    if (squares[index] || gameWon.length > 0) {
       return;
     }
 
@@ -51,14 +51,13 @@ function Board({
 
   for (let i = 0; i < 9; i++) {
     const symbol = squares[i];
-
     assert(typeof symbol === "string");
 
     grid.push(
       <Square
         key={i}
         value={symbol}
-        won={false}
+        gameWon={gameWon}
         onSquareClick={() => handleClick(i)}
       />
     );
@@ -90,18 +89,15 @@ function calculateWinner(squares: string[]) {
     assert(typeof b === "number");
     assert(typeof c === "number");
 
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      // also necessary because squares[a] inherently has type string | undefined, so we can't
-      // return it. instead, we can return a variable and assert its type beforehand
-      const winner = squares[a];
-
-      assert(typeof winner === "string");
-
-      return winner;
+    // check that all three squares are not empty
+    if (squares[a] && squares[b] && squares[c]) {
+      if (squares[a] === squares[b] && squares[a] === squares[c] && squares[b] === squares[c]) {
+        return [a, b, c];
+      }
     }
   }
 
-  return "";
+  return [];
 }
 
 function MoveList({
@@ -165,27 +161,38 @@ function MoveList({
 export default function Game() {
   const [history, setHistory] = useState<string[][]>([Array(9).fill("")]);
   const [currentMove, setCurrentMove] = useState(0);
+  const [gameWon, setGameWon] = useState<number[]>([]);
 
   function handlePlay(nextSquares: string[]) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
 
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
+    setGameWon(calculateWinner(nextSquares));
   }
 
   function jumpTo(move: number) {
     setCurrentMove(move);
   }
 
-  // because player X only moves on even indices, and Y on odd
-  const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove];
-
   assert(typeof currentSquares === "object");
 
-  // TODO: modify calculateWinner() to return the array of indices so that we can pass it into the
-  // <Board /> prop and have it render squares either green (won) or white (normal)
-  const winner = calculateWinner(currentSquares);
+  // because player X only moves on even indices, and Y on odd
+  const xIsNext = currentMove % 2 === 0;
+
+  let status;
+  if (gameWon.length > 0) {
+    const winningIndex = gameWon[0];
+    assert(typeof winningIndex === "number");
+
+    const winningPlayer = currentSquares[winningIndex];
+    assert(typeof winningPlayer === "string");
+
+    status = `${winningPlayer} is the winner!`;
+  } else {
+    status = `${xIsNext ? "X" : "O"}'s turn`;
+  }
 
   return (
     <>
@@ -194,11 +201,11 @@ export default function Game() {
       </Head>
       <main className="flex min-h-screen items-center justify-center gap-5">
         <div className="rounded-xl bg-slate-100 p-3">
-          <p>{winner ? `${winner} is the winner!` : `${xIsNext ? "X" : "O"}'s turn`}</p>
+          <p>{status}</p>
           <Board
             xIsNext={xIsNext}
             squares={currentSquares}
-            gameWon={winner}
+            gameWon={gameWon}
             onPlay={handlePlay}
           />
         </div>
