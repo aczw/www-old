@@ -11,11 +11,11 @@ function Square({
   won: boolean;
   onSquareClick: () => void;
 }) {
-  const color = won ? "green-500" : "white";
+  const background = won ? "bg-green-500" : "bg-white";
 
   return (
     <button
-      className={`float-left -mr-[2px] -mt-[2px] h-12 w-12 border-2 border-black bg-${color} text-center text-3xl`}
+      className={`float-left -mr-[2px] -mt-[2px] h-12 w-12 border-2 border-black ${background} text-center text-3xl`}
       onClick={onSquareClick}
     >
       {value}
@@ -117,8 +117,11 @@ function MoveList({
 
   const moves = history.map((_, moveIndex) => {
     const current = moveIndex === currentMove;
-
     const opacity = current ? "/50" : "";
+
+    const borderColor = `border-black${opacity}`;
+    const background = `bg-slate-100${opacity}`;
+    const text = `text-black${opacity}`;
     const cursor = current ? "cursor-not-allowed" : "cursor-pointer";
 
     let description = "go to game start";
@@ -133,7 +136,7 @@ function MoveList({
     return (
       <li key={moveIndex}>
         <button
-          className={`rounded-md border-2 ${cursor} border-black${opacity} bg-slate-100${opacity} px-1 text-black${opacity}`}
+          className={`rounded-md border-2 ${cursor} ${borderColor} ${background} px-1 ${text}`}
           disabled={current ? true : false}
           onClick={() => jumpTo(moveIndex)}
         >
