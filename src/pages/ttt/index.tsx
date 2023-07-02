@@ -119,23 +119,27 @@ export default function Game() {
     setCurrentMove(move);
   }
 
-  const moves = history.map((_, move) => {
-    if (move === currentMove) {
-      return;
+  const moves = history.map((_, moveIndex) => {
+    const current = moveIndex === currentMove;
+
+    const opacity = current ? "/50" : "";
+    const cursor = current ? "cursor-not-allowed" : "cursor-pointer";
+
+    let description = "go to game start";
+    if (current) {
+      description = `you are here`;
+    } else if (moveIndex > currentMove) {
+      description = `go back to #${moveIndex}`;
+    } else if (moveIndex > 0) {
+      description = `go to move #${moveIndex}`;
     }
 
-    const description =
-      move > currentMove
-        ? `go back to #${move}`
-        : move > 0
-        ? `go to move #${move}`
-        : "go to game start";
-
     return (
-      <li key={move}>
+      <li key={moveIndex}>
         <button
-          className="rounded-md border-2 border-black bg-slate-100 px-1"
-          onClick={() => jumpTo(move)}
+          className={`rounded-md border-2 ${cursor} border-black${opacity} bg-slate-100${opacity} px-1 text-black${opacity}`}
+          disabled={current ? true : false}
+          onClick={() => jumpTo(moveIndex)}
         >
           {description}
         </button>
