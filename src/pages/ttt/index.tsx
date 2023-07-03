@@ -209,14 +209,24 @@ function MoveList({
       ? `go to move #${moveIndex}`
       : "go to game start";
 
+    const coordinate = history[moveIndex]?.move;
+
     return (
       <li key={moveIndex}>
         <button
-          className={`rounded-md border-2 ${cursor} border-black bg-purple-100 px-1 text-black ${opacity}`}
+          className={`rounded-md border-2 ${cursor} border-black bg-purple-100 px-2 py-0.5 text-black ${opacity} hover:bg-purple-200`}
           disabled={current ? true : false}
           onClick={() => jumpTo(moveIndex)}
         >
           {description}
+          {typeof coordinate !== "undefined" ? (
+            <>
+              {": "}
+              <code>{`(${coordinate.y}, ${coordinate.x})`}</code>
+            </>
+          ) : (
+            ""
+          )}
         </button>
       </li>
     );
@@ -226,7 +236,7 @@ function MoveList({
     <div className="rounded-xl bg-slate-100 p-3">
       <p className="ml-3">move history</p>
       <button
-        className="mb-5 ml-3 rounded-md border-2 border-black bg-slate-300 px-1"
+        className="mb-5 ml-3 rounded-md border-2 border-black bg-slate-300 px-1 hover:bg-slate-400"
         onClick={() => setReverse(!reverse)}
       >
         reverse list!
@@ -290,12 +300,6 @@ export default function Game() {
         <title>tic tac toe</title>
       </Head>
       <main className="flex min-h-screen items-center justify-center gap-5">
-        <div>
-          <h1>tic tac toe</h1>
-          <p>
-            coordinates are counted as <code>(0, 0)</code> from the top left.
-          </p>
-        </div>
         <div className="rounded-xl bg-slate-100 p-3">
           <p>{status}</p>
           <Board
@@ -310,12 +314,21 @@ export default function Game() {
           currentMove={currentMove}
           jumpTo={jumpTo}
         />
-        <Link
-          href="/"
-          className="rounded-xl bg-purple-100 p-2"
-        >
-          go back
-        </Link>
+        <div>
+          <b>tic tac toe</b>
+          <p className="mb-5">
+            coordinates are listed in <code>(row, col)</code> format with<br></br>the origin at the
+            top left.
+          </p>
+          <b>rules</b>
+          <p className="mb-8">are you serious?</p>
+          <Link
+            href="/"
+            className="rounded-xl bg-red-100 p-2 hover:bg-red-200"
+          >
+            go back home
+          </Link>
+        </div>
       </main>
     </>
   );
