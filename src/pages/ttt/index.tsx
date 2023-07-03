@@ -49,23 +49,19 @@ function Board({
 
   const grid: ReactElement[] = [];
 
-  for (let i = 0; i < 9; i++) {
-    const symbol = squares[i];
-    assert(typeof symbol === "string");
-
-    let background;
-    switch (gameState.s) {
-      case "Playing":
-        background = "bg-white";
-        break;
-      case "Draw":
-        background = "bg-yellow-200";
-        break;
-      case "Win":
-        background =
-          gameState.a === i || gameState.b === i || gameState.c === i ? "bg-green-300" : "bg-white";
-        break;
-    }
+  squares.forEach((symbol, i) => {
+    const background = (() => {
+      switch (gameState.s) {
+        case "Playing":
+          return "bg-white";
+        case "Draw":
+          return "bg-yellow-200";
+        case "Win":
+          return gameState.a === i || gameState.b === i || gameState.c === i
+            ? "bg-green-300"
+            : "bg-white";
+      }
+    })();
 
     grid.push(
       <Square
@@ -75,7 +71,7 @@ function Board({
         onSquareClick={() => handleClick(i)}
       />
     );
-  }
+  });
 
   return <div className="grid grid-cols-3 grid-rows-3">{grid}</div>;
 }
@@ -97,20 +93,18 @@ function calculateWinner(squares: string[]): GameState {
     [2, 4, 6],
   ];
 
-  // check for winner
-  for (const [a, b, c] of winningLines) {
-    // necessary because noUncheckedIndexedAccess flag is true
-    assert(typeof a === "number");
-    assert(typeof b === "number");
-    assert(typeof c === "number");
+  winningLines.forEach(([i, j, k]) => {
+    assert(typeof i === "number");
+    assert(typeof j === "number");
+    assert(typeof k === "number");
 
     // check that all three squares are not empty
-    if (squares[a] && squares[b] && squares[c]) {
-      if (squares[a] === squares[b] && squares[a] === squares[c] && squares[b] === squares[c]) {
-        return { s: "Win", a, b, c };
+    if (squares[i] && squares[j] && squares[k]) {
+      if (squares[i] === squares[j] && squares[i] === squares[k] && squares[j] === squares[k]) {
+        return { s: "Win", a: i, b: j, c: k };
       }
     }
-  }
+  });
 
   // check for draw. occurs when every square is filled
   let count = 0;
@@ -144,14 +138,15 @@ function MoveList({
     const opacity = current ? "opacity-50" : "";
     const cursor = current ? "cursor-not-allowed" : "cursor-pointer";
 
-    let description = "go to game start";
-    if (current) {
-      description = currentMove === 0 ? "you're at game start!" : `you're on move #${moveIndex}`;
-    } else if (moveIndex > currentMove) {
-      description = `go back to move #${moveIndex}`;
-    } else if (moveIndex > 0) {
-      description = `go to move #${moveIndex}`;
-    }
+    const description = current
+      ? currentMove === 0
+        ? "you're at game start!"
+        : `you're on move #${moveIndex}`
+      : moveIndex > currentMove
+      ? `go back to move #${moveIndex}`
+      : moveIndex > 0
+      ? `go to move #${moveIndex}`
+      : "go to game start";
 
     return (
       <li key={moveIndex}>
@@ -201,8 +196,8 @@ export default function Game() {
   }
 
   function getCurrentSquares(move: number) {
-    const squares = history[move];
-    assert(Array.isArray(squares));
+    // guaranteed to be array of strings, because that's all we ever .push() into it
+    const squares = history[move] as string[];
 
     return squares;
   }
@@ -211,21 +206,19 @@ export default function Game() {
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = getCurrentSquares(currentMove);
 
-  let status;
-  switch (gameState.s) {
-    case "Playing":
-      status = `${xIsNext ? "X" : "O"}'s turn`;
-      break;
-    case "Draw":
-      status = "game draw!";
-      break;
-    case "Win":
-      const winningPlayer = currentSquares[gameState.a];
-      assert(typeof winningPlayer === "string");
+  const status = (() => {
+    switch (gameState.s) {
+      case "Playing":
+        return `${xIsNext ? "X" : "O"}'s turn`;
+      case "Draw":
+        return "game draw!";
+      case "Win":
+        // we get currentSquares[] from the history, guaranteed to have string[]
+        const winningPlayer = currentSquares[gameState.a] as string;
 
-      status = `${winningPlayer} is the winner!`;
-      break;
-  }
+        return `${winningPlayer} is the winner!`;
+    }
+  })();
 
   return (
     <>
