@@ -93,7 +93,7 @@ function calculateWinner(squares: string[]): GameState {
     [2, 4, 6],
   ];
 
-  winningLines.forEach(([i, j, k]) => {
+  for (const [i, j, k] of winningLines) {
     assert(typeof i === "number");
     assert(typeof j === "number");
     assert(typeof k === "number");
@@ -104,7 +104,7 @@ function calculateWinner(squares: string[]): GameState {
         return { s: "Win", a: i, b: j, c: k };
       }
     }
-  });
+  }
 
   // check for draw. occurs when every square is filled
   let count = 0;
