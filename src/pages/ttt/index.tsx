@@ -3,7 +3,26 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState, type ReactElement } from "react";
 
-type GameState = { s: "Playing" } | { s: "Draw" } | { s: "Win"; a: number; b: number; c: number };
+type Grid = [[string, string, string], [string, string, string], [string, string, string]];
+type GameState =
+  | { s: "Playing" }
+  | { s: "Draw" }
+  | {
+      s: "Win";
+      a: Coordinate;
+      b: Coordinate;
+      c: Coordinate;
+    };
+
+interface HistoryEntry {
+  squares: Grid;
+  move?: Coordinate;
+}
+
+interface Coordinate {
+  x: number;
+  y: number;
+}
 
 function Square({
   value,
@@ -31,77 +50,116 @@ function Board({
   onPlay,
 }: {
   xIsNext: boolean;
-  squares: string[];
+  squares: Grid;
   gameState: GameState;
-  onPlay: (nextSquares: string[]) => void;
+  onPlay: (nextSquares: Grid, move: Coordinate) => void;
 }) {
-  function handleClick(index: number) {
+  function handleClick({ x, y }: Coordinate) {
     // a nonempty string is truthy apparently...
     // also disable board interaction if game is over (win or draw)
-    if (squares[index] || gameState.s !== "Playing") {
+    if ((squares[y] as string[])[x] || gameState.s !== "Playing") {
       return;
     }
 
-    const nextSquares = squares.slice();
-    nextSquares[index] = xIsNext ? "X" : "O";
+    const nextSquares = squares.map((row) => row.slice()) as Grid;
+    (nextSquares[y] as string[])[x] = xIsNext ? "X" : "O";
 
-    onPlay(nextSquares);
+    onPlay(nextSquares, { x, y });
   }
 
   const grid: ReactElement[] = [];
 
-  squares.forEach((symbol, i) => {
-    const background = (() => {
-      switch (gameState.s) {
-        case "Playing":
-          return "bg-white";
-        case "Draw":
-          return "bg-yellow-200";
-        case "Win":
-          return gameState.a === i || gameState.b === i || gameState.c === i
-            ? "bg-green-300"
-            : "bg-white";
-      }
-    })();
+  squares.forEach((row, y) => {
+    row.forEach((symbol, x) => {
+      const background = (() => {
+        switch (gameState.s) {
+          case "Playing":
+            return "bg-white";
+          case "Draw":
+            return "bg-yellow-200";
+          case "Win":
+            const a = gameState.a.x === x && gameState.a.y === y;
+            const b = gameState.b.x === x && gameState.b.y === y;
+            const c = gameState.c.x === x && gameState.c.y === y;
+            return a || b || c ? "bg-green-300" : "bg-white";
+        }
+      })();
 
-    grid.push(
-      <Square
-        key={i}
-        value={symbol}
-        background={background}
-        onSquareClick={() => handleClick(i)}
-      />
-    );
+      grid.push(
+        <Square
+          key={`${x}, ${y}`}
+          value={symbol}
+          background={background}
+          onSquareClick={() => handleClick({ x, y })}
+        />
+      );
+    });
   });
 
   return <div className="grid grid-cols-3 grid-rows-3">{grid}</div>;
 }
 
-function calculateWinner(squares: string[]): GameState {
+function calculateWinner(squares: Grid): GameState {
   const winningLines = [
     // horizontal
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
+    [
+      { x: 0, y: 0 },
+      { x: 1, y: 0 },
+      { x: 2, y: 0 },
+    ],
+    [
+      { x: 0, y: 1 },
+      { x: 1, y: 1 },
+      { x: 2, y: 1 },
+    ],
+    [
+      { x: 0, y: 2 },
+      { x: 1, y: 2 },
+      { x: 2, y: 2 },
+    ],
 
     // vertical
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
+    [
+      { x: 0, y: 0 },
+      { x: 0, y: 1 },
+      { x: 0, y: 2 },
+    ],
+    [
+      { x: 1, y: 0 },
+      { x: 1, y: 1 },
+      { x: 1, y: 2 },
+    ],
+    [
+      { x: 2, y: 0 },
+      { x: 2, y: 1 },
+      { x: 2, y: 2 },
+    ],
 
     // diagonal
-    [0, 4, 8],
-    [2, 4, 6],
+    [
+      { x: 0, y: 0 },
+      { x: 1, y: 1 },
+      { x: 2, y: 2 },
+    ],
+    [
+      { x: 2, y: 0 },
+      { x: 1, y: 1 },
+      { x: 0, y: 2 },
+    ],
   ];
 
   for (const [i, j, k] of winningLines) {
-    assert(typeof i === "number");
-    assert(typeof j === "number");
-    assert(typeof k === "number");
+    assert(typeof i !== "undefined");
+    assert(typeof j !== "undefined");
+    assert(typeof k !== "undefined");
+
+    const a = (squares[i.y] as string[])[i.x] as string;
+    const b = (squares[j.y] as string[])[j.x] as string;
+    const c = (squares[k.y] as string[])[k.x] as string;
 
     // check that all three squares are not empty
-    if (squares[i] && squares[j] && squares[k]) {
-      if (squares[i] === squares[j] && squares[i] === squares[k] && squares[j] === squares[k]) {
+    if (a && b && c) {
+      if (a === b && a === c && b === c) {
         return { s: "Win", a: i, b: j, c: k };
       }
     }
@@ -109,10 +167,12 @@ function calculateWinner(squares: string[]): GameState {
 
   // check for draw. occurs when every square is filled
   let count = 0;
-  squares.forEach((square) => {
-    if (square) {
-      count += 1;
-    }
+  squares.forEach((row) => {
+    row.forEach((square) => {
+      if (square) {
+        count += 1;
+      }
+    });
   });
 
   if (count === 9) {
@@ -128,7 +188,7 @@ function MoveList({
   currentMove,
   jumpTo,
 }: {
-  history: string[][];
+  history: HistoryEntry[];
   currentMove: number;
   jumpTo: (move: number) => void;
 }) {
@@ -179,12 +239,21 @@ function MoveList({
 }
 
 export default function Game() {
-  const [history, setHistory] = useState<string[][]>([Array(9).fill("")]);
+  const [history, setHistory] = useState<HistoryEntry[]>([
+    {
+      squares: [
+        ["", "", ""],
+        ["", "", ""],
+        ["", "", ""],
+      ],
+    },
+  ]);
   const [currentMove, setCurrentMove] = useState(0);
   const [gameState, setGameState] = useState<GameState>({ s: "Playing" });
 
-  function handlePlay(nextSquares: string[]) {
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+  function handlePlay(nextSquares: Grid, move: Coordinate) {
+    const nextEntry = { squares: nextSquares, move };
+    const nextHistory = [...history.slice(0, currentMove + 1), nextEntry];
 
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
@@ -193,19 +262,14 @@ export default function Game() {
 
   function jumpTo(move: number) {
     setCurrentMove(move);
-    setGameState(calculateWinner(getCurrentSquares(move)));
-  }
-
-  function getCurrentSquares(move: number) {
-    // guaranteed to be array of strings, because that's all we ever .push() into it
-    const squares = history[move] as string[];
-
-    return squares;
+    setGameState(calculateWinner(history[move]?.squares as Grid));
   }
 
   // because player X only moves on even indices, and Y on odd
   const xIsNext = currentMove % 2 === 0;
-  const currentSquares = getCurrentSquares(currentMove);
+
+  // currentMove will never be greater than history.length - 1
+  const currentSquares = history[currentMove]?.squares as Grid;
 
   const status = (() => {
     switch (gameState.s) {
@@ -214,9 +278,8 @@ export default function Game() {
       case "Draw":
         return "game draw!";
       case "Win":
-        // we get currentSquares[] from the history, guaranteed to have string[]
-        const winningPlayer = currentSquares[gameState.a] as string;
-
+        // we get currentSquares[] from the history, guaranteed to be a Grid
+        const winningPlayer = (currentSquares[gameState.a.y] as string[])[gameState.a.x] as string;
         return `${winningPlayer} is the winner!`;
     }
   })();
