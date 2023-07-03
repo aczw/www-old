@@ -1,5 +1,6 @@
 import assert from "assert";
 import Head from "next/head";
+import Link from "next/link";
 import { useState, type ReactElement } from "react";
 
 type GameState = { s: "Playing" } | { s: "Draw" } | { s: "Win"; a: number; b: number; c: number };
@@ -226,6 +227,12 @@ export default function Game() {
         <title>tic tac toe</title>
       </Head>
       <main className="flex min-h-screen items-center justify-center gap-5">
+        <div>
+          <h1>tic tac toe</h1>
+          <p>
+            coordinates are counted as <code>(0, 0)</code> from the top left.
+          </p>
+        </div>
         <div className="rounded-xl bg-slate-100 p-3">
           <p>{status}</p>
           <Board
@@ -240,6 +247,12 @@ export default function Game() {
           currentMove={currentMove}
           jumpTo={jumpTo}
         />
+        <Link
+          href="/"
+          className="rounded-xl bg-purple-100 p-2"
+        >
+          go back
+        </Link>
       </main>
     </>
   );
