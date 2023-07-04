@@ -202,11 +202,11 @@ function MoveList({
     const description = current
       ? currentMove === 0
         ? "you're at game start!"
-        : `you're on move #${moveIndex}`
+        : `you're on move ${moveIndex}`
       : moveIndex > currentMove
-      ? `go back to move #${moveIndex}`
+      ? `move ${moveIndex}`
       : moveIndex > 0
-      ? `go to move #${moveIndex}`
+      ? `move ${moveIndex}`
       : "go to game start";
 
     const coordinate = history[moveIndex]?.move;
@@ -214,14 +214,14 @@ function MoveList({
     return (
       <li key={moveIndex}>
         <button
-          className={`rounded-md border-2 ${cursor} border-black bg-purple-100 px-2 py-0.5 text-black ${opacity} hover:bg-purple-200`}
+          className={`w-full rounded-xl ${cursor} border-black bg-gray-300 py-1.5 text-black ${opacity} hover:bg-gray-400/50`}
           disabled={current ? true : false}
           onClick={() => jumpTo(moveIndex)}
         >
           {description}
           {typeof coordinate !== "undefined" ? (
             <>
-              {": "}
+              {" / "}
               <code>{`(${coordinate.y}, ${coordinate.x})`}</code>
             </>
           ) : (
@@ -233,17 +233,20 @@ function MoveList({
   });
 
   return (
-    <div className="min-h-[508px] w-[295px] rounded-3xl bg-gray-200 p-5">
-      <p className="ml-3">move history</p>
+    <div className="mb-10 min-h-[508px] w-[295px] rounded-3xl bg-gray-200 p-5">
+      <h1 className="text-2xl font-bold">moves history</h1>
+      <p className="mb-4 text-base">select a move to go back to that point in the game.</p>
+      <p className="mb-4 text-base">
+        coordinates are listed in <code className="inline-block">(row, col)</code> format with the
+        origin at the top left.
+      </p>
       <button
-        className="mb-5 ml-3 rounded-md border-2 border-black bg-slate-300 px-1 hover:bg-slate-400"
+        className="mb-6 w-full rounded-xl bg-gray-50 py-2 font-mono italic hover:bg-gray-100"
         onClick={() => setReverse(!reverse)}
       >
-        reverse list!
+        reverse list
       </button>
-      <div className="rounded-xl bg-gray-300 p-5">
-        <ol className="space-y-1">{reverse ? moves.slice().reverse() : moves}</ol>
-      </div>
+      <ol className="space-y-2">{reverse ? moves.slice().reverse() : moves}</ol>
     </div>
   );
 }
@@ -298,16 +301,13 @@ function Game() {
     <>
       <div className="mt-10 min-h-full max-w-[295px] rounded-3xl bg-gray-200 p-5">
         <Link href="/">
-          <button className="w-full rounded-xl bg-gray-50 p-2 font-mono italic hover:bg-gray-100">
+          <button className="w-full rounded-xl bg-gray-50 py-[6px] font-mono italic hover:bg-gray-100">
             go back home
           </button>
         </Link>
         <h1 className="mt-4 text-2xl font-bold">tic tac toe</h1>
-        <p className="text-base">
-          coordinates are listed in <code className="inline-block">(row, col)</code> format with the
-          origin at the top left. have fun.
-        </p>
-        <h1 className="mt-4 text-2xl font-bold">rules</h1>
+        <p className="text-base">created using the React tutorial on their website. have fun.</p>
+        <h1 className="mt-4 text-2xl font-bold">how to play</h1>
         <p className="text-base">are you serious?</p>
       </div>
       <div className="w-max min-w-max rounded-3xl bg-gray-200 p-8 pr-[35px] pt-[35px]">
@@ -318,7 +318,7 @@ function Game() {
           onPlay={handlePlay}
         />
       </div>
-      <div className="flex h-20 w-[295px] items-center justify-center rounded-3xl bg-gray-200 text-4xl font-bold text-gray-600">
+      <div className="flex h-20 w-[295px] items-center justify-center rounded-3xl bg-gray-200 text-4xl font-bold text-gray-500">
         {status}
       </div>
       <MoveList
