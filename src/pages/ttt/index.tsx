@@ -24,7 +24,7 @@ interface Coordinate {
   y: number;
 }
 
-function Square({
+const Square = ({
   value,
   background,
   onSquareClick,
@@ -32,7 +32,7 @@ function Square({
   value: string;
   background: string;
   onSquareClick: () => void;
-}) {
+}) => {
   return (
     <button
       className={`float-left border-black ${background} -mr-[4px] -mt-[4px] h-20 w-20 border-[4px] text-center text-5xl`}
@@ -41,9 +41,9 @@ function Square({
       {value}
     </button>
   );
-}
+};
 
-function Board({
+const Board = ({
   xIsNext,
   squares,
   gameState,
@@ -53,7 +53,7 @@ function Board({
   squares: Grid;
   gameState: GameState;
   onPlay: (nextSquares: Grid, move: Coordinate) => void;
-}) {
+}) => {
   function handleClick({ x, y }: Coordinate) {
     // a nonempty string is truthy apparently...
     // also disable board interaction if game is over (win or draw)
@@ -97,9 +97,9 @@ function Board({
   });
 
   return <div className="grid w-max min-w-max grid-cols-3 grid-rows-3">{grid}</div>;
-}
+};
 
-function calculateWinner(squares: Grid): GameState {
+const calculateWinner = (squares: Grid): GameState => {
   const winningLines = [
     // horizontal
     [
@@ -181,9 +181,9 @@ function calculateWinner(squares: Grid): GameState {
 
   // else, the game is still going on
   return { s: "Playing" };
-}
+};
 
-function MoveList({
+const MoveList = ({
   history,
   currentMove,
   jumpTo,
@@ -191,7 +191,7 @@ function MoveList({
   history: HistoryEntry[];
   currentMove: number;
   jumpTo: (move: number) => void;
-}) {
+}) => {
   const [reverse, setReverse] = useState(false);
 
   const moves = history.map((_, moveIndex) => {
@@ -251,9 +251,9 @@ function MoveList({
       </ol>
     </div>
   );
-}
+};
 
-function Game() {
+const Game = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([
     {
       squares: [
@@ -334,9 +334,9 @@ function Game() {
       />
     </div>
   );
-}
+};
 
-export default function App() {
+const App = () => {
   return (
     <>
       <Head>
@@ -347,4 +347,6 @@ export default function App() {
       </main>
     </>
   );
-}
+};
+
+export default App;
