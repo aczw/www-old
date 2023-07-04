@@ -233,7 +233,7 @@ function MoveList({
   });
 
   return (
-    <div className="order-2 h-full min-w-[295px] max-w-[295px] rounded-3xl bg-gray-200 p-5 lg:order-1">
+    <div className="order-2 h-full min-w-[295px] max-w-[295px] rounded-3xl bg-gray-200 p-5">
       <p className="ml-3">move history</p>
       <button
         className="mb-5 ml-3 rounded-md border-2 border-black bg-slate-300 px-1 hover:bg-slate-400"
@@ -295,13 +295,13 @@ function Game() {
   })();
 
   return (
-    <div className="flex flex-col gap-6 lg:flex-row">
+    <div className="flex flex-col gap-6">
       <MoveList
         history={history}
         currentMove={currentMove}
         jumpTo={jumpTo}
       />
-      <div className="order-1 flex flex-col space-y-6 lg:order-2">
+      <div className="order-1 flex flex-col space-y-6">
         <div className="w-max min-w-max rounded-3xl bg-gray-200 p-8 pr-[35px] pt-[35px]">
           <Board
             xIsNext={xIsNext}
@@ -314,11 +314,10 @@ function Game() {
           {status}
         </div>
       </div>
-      <div className="order-3">
+      <div className="order-3 min-w-[295px] max-w-[295px]">
         <b>tic tac toe</b>
-        <p className="mb-5">
-          coordinates are listed in <code>(row, col)</code> format with<br></br>the origin at the
-          top left.
+        <p>
+          coordinates are listed in <code>(row, col)</code> format with the origin at the top left.
         </p>
         <b>rules</b>
         <p className="mb-8">are you serious?</p>
