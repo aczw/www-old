@@ -233,7 +233,7 @@ function MoveList({
   });
 
   return (
-    <div className="h-[510px] min-w-[295px] rounded-3xl bg-gray-200 p-5">
+    <div className="min-h-[508px] w-[295px] rounded-3xl bg-gray-200 p-5">
       <p className="ml-3">move history</p>
       <button
         className="mb-5 ml-3 rounded-md border-2 border-black bg-slate-300 px-1 hover:bg-slate-400"
@@ -290,37 +290,36 @@ function Game() {
       case "Win":
         // we get currentSquares[] from the history, guaranteed to be a Grid
         const winningPlayer = (currentSquares[gameState.a.y] as string[])[gameState.a.x] as string;
-        return `${winningPlayer} is the winner!`;
+        return `${winningPlayer} wins!`;
     }
   })();
 
   return (
     <>
-      <div className="mt-16 h-full max-w-[295px] rounded-3xl bg-gray-200 p-8">
-        <b className="text-xl">tic tac toe</b>
-        <p className="mx-auto mb-5">
-          coordinates are listed in <code className="inline-block">(row, col)</code> format with the
-          origin at the top left.
-        </p>
-        <b className="text-xl">rules</b>
-        <p className="mb-8">are you serious?</p>
-        <Link
-          href="/"
-          className="rounded-xl bg-red-100 p-2 hover:bg-red-200"
-        >
-          go back home
+      <div className="mt-10 min-h-full max-w-[295px] rounded-3xl bg-gray-200 p-5">
+        <Link href="/">
+          <button className="w-full rounded-xl bg-gray-50 p-2 font-mono italic hover:bg-gray-100">
+            go back home
+          </button>
         </Link>
+        <h1 className="mt-4 text-2xl font-bold">tic tac toe</h1>
+        <p className="text-base">
+          coordinates are listed in <code className="inline-block">(row, col)</code> format with the
+          origin at the top left. have fun.
+        </p>
+        <h1 className="mt-4 text-2xl font-bold">rules</h1>
+        <p className="text-base">are you serious?</p>
       </div>
-      <div className="space-y-6">
-        <div className="w-max min-w-max rounded-3xl bg-gray-200 p-8 pr-[35px] pt-[35px]">
-          <Board
-            xIsNext={xIsNext}
-            squares={currentSquares}
-            gameState={gameState}
-            onPlay={handlePlay}
-          />
-        </div>
-        <div className="h-20 w-[295px] rounded-3xl bg-gray-200">{status}</div>
+      <div className="w-max min-w-max rounded-3xl bg-gray-200 p-8 pr-[35px] pt-[35px]">
+        <Board
+          xIsNext={xIsNext}
+          squares={currentSquares}
+          gameState={gameState}
+          onPlay={handlePlay}
+        />
+      </div>
+      <div className="flex h-20 w-[295px] items-center justify-center rounded-3xl bg-gray-200 text-4xl font-bold text-gray-600">
+        {status}
       </div>
       <MoveList
         history={history}
@@ -337,7 +336,7 @@ export default function App() {
       <Head>
         <title>tic tac toe</title>
       </Head>
-      <main className="flex min-h-screen flex-row items-center justify-center gap-6">
+      <main className="flex min-h-screen flex-col items-center justify-center gap-6">
         <Game />
       </main>
     </>
