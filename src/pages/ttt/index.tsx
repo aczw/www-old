@@ -202,7 +202,7 @@ function MoveList({
     const description = current
       ? currentMove === 0
         ? "you're at game start!"
-        : `you're on move ${moveIndex}`
+        : `on move ${moveIndex}`
       : moveIndex > currentMove
       ? `move ${moveIndex}`
       : moveIndex > 0
@@ -233,7 +233,7 @@ function MoveList({
   });
 
   return (
-    <div className="mb-10 min-h-[508px] w-[295px] rounded-3xl bg-gray-200 p-5">
+    <div className="mb-10 min-h-[508px] w-[295px] rounded-3xl bg-gray-200 p-5 md:min-h-[490px] md:w-[370px]">
       <h1 className="text-2xl font-bold">moves history</h1>
       <p className="mb-4 text-base">select a move to go back to that point in the game.</p>
       <p className="mb-4 text-base">
@@ -246,7 +246,9 @@ function MoveList({
       >
         reverse list
       </button>
-      <ol className="space-y-2">{reverse ? moves.slice().reverse() : moves}</ol>
+      <ol className="gap-2 space-y-2 md:grid md:grid-cols-2 md:space-y-0">
+        {reverse ? moves.slice().reverse() : moves}
+      </ol>
     </div>
   );
 }
@@ -298,35 +300,39 @@ function Game() {
   })();
 
   return (
-    <>
-      <div className="mt-10 min-h-full max-w-[295px] rounded-3xl bg-gray-200 p-5">
-        <Link href="/">
-          <button className="w-full rounded-xl bg-gray-50 py-[6px] font-mono italic hover:bg-gray-100">
-            go back home
-          </button>
-        </Link>
-        <h1 className="mt-4 text-2xl font-bold">tic tac toe</h1>
-        <p className="text-base">created using the React tutorial on their website. have fun.</p>
-        <h1 className="mt-4 text-2xl font-bold">how to play</h1>
-        <p className="text-base">are you serious?</p>
-      </div>
-      <div className="w-max min-w-max rounded-3xl bg-gray-200 p-8 pr-[35px] pt-[35px]">
-        <Board
-          xIsNext={xIsNext}
-          squares={currentSquares}
-          gameState={gameState}
-          onPlay={handlePlay}
-        />
-      </div>
-      <div className="flex h-20 w-[295px] items-center justify-center rounded-3xl bg-gray-200 text-4xl font-bold text-gray-500">
-        {status}
+    <div className="flex flex-col items-start gap-6 md:flex-row">
+      <div className="flex flex-col items-start justify-center gap-6 lg:flex-row">
+        <div className="mt-10 min-h-full max-w-[295px] rounded-3xl bg-gray-200 p-5 md:mt-0">
+          <Link href="/">
+            <button className="w-full rounded-xl bg-gray-50 py-[6px] font-mono italic hover:bg-gray-100">
+              go back home
+            </button>
+          </Link>
+          <h1 className="mt-4 text-2xl font-bold">tic tac toe</h1>
+          <p className="text-base">created using the React tutorial on their website. have fun.</p>
+          <h1 className="mt-4 text-2xl font-bold">how to play</h1>
+          <p className="text-base">are you serious?</p>
+        </div>
+        <div className="space-y-6">
+          <div className="w-max min-w-max rounded-3xl bg-gray-200 p-8 pr-[35px] pt-[35px]">
+            <Board
+              xIsNext={xIsNext}
+              squares={currentSquares}
+              gameState={gameState}
+              onPlay={handlePlay}
+            />
+          </div>
+          <div className="flex h-20 w-[295px] items-center justify-center rounded-3xl bg-gray-200 text-4xl font-bold text-gray-500">
+            {status}
+          </div>
+        </div>
       </div>
       <MoveList
         history={history}
         currentMove={currentMove}
         jumpTo={jumpTo}
       />
-    </>
+    </div>
   );
 }
 
@@ -336,7 +342,7 @@ export default function App() {
       <Head>
         <title>tic tac toe</title>
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center gap-6">
+      <main className="flex min-h-screen items-center justify-center">
         <Game />
       </main>
     </>
