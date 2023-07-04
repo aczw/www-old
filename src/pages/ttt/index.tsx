@@ -35,7 +35,7 @@ function Square({
 }) {
   return (
     <button
-      className={`float-left -mr-[2px] -mt-[2px] h-12 w-12 border-2 border-black ${background} text-center text-3xl`}
+      className={`float-left border-black ${background} -mr-[4px] -mt-[4px] h-20 w-20 border-[4px] text-center text-5xl`}
       onClick={onSquareClick}
     >
       {value}
@@ -96,7 +96,7 @@ function Board({
     });
   });
 
-  return <div className="grid grid-cols-3 grid-rows-3">{grid}</div>;
+  return <div className="grid w-max min-w-max grid-cols-3 grid-rows-3">{grid}</div>;
 }
 
 function calculateWinner(squares: Grid): GameState {
@@ -233,7 +233,7 @@ function MoveList({
   });
 
   return (
-    <div className="rounded-xl bg-slate-100 p-3">
+    <div className="order-2 h-full min-w-[295px] max-w-[295px] rounded-3xl bg-gray-200 p-5 lg:order-1">
       <p className="ml-3">move history</p>
       <button
         className="mb-5 ml-3 rounded-md border-2 border-black bg-slate-300 px-1 hover:bg-slate-400"
@@ -241,14 +241,14 @@ function MoveList({
       >
         reverse list!
       </button>
-      <div className="rounded-xl bg-slate-50 p-3">
+      <div className="rounded-xl bg-gray-300 p-5">
         <ol className="space-y-1">{reverse ? moves.slice().reverse() : moves}</ol>
       </div>
     </div>
   );
 }
 
-export default function Game() {
+function Game() {
   const [history, setHistory] = useState<HistoryEntry[]>([
     {
       squares: [
@@ -295,13 +295,14 @@ export default function Game() {
   })();
 
   return (
-    <>
-      <Head>
-        <title>tic tac toe</title>
-      </Head>
-      <main className="flex min-h-screen items-center justify-center gap-5">
-        <div className="rounded-xl bg-slate-100 p-3">
-          <p>{status}</p>
+    <div className="flex flex-col gap-6 lg:flex-row">
+      <MoveList
+        history={history}
+        currentMove={currentMove}
+        jumpTo={jumpTo}
+      />
+      <div className="order-1 flex flex-col space-y-6 lg:order-2">
+        <div className="w-max min-w-max rounded-3xl bg-gray-200 p-8 pr-[35px] pt-[35px]">
           <Board
             xIsNext={xIsNext}
             squares={currentSquares}
@@ -309,26 +310,37 @@ export default function Game() {
             onPlay={handlePlay}
           />
         </div>
-        <MoveList
-          history={history}
-          currentMove={currentMove}
-          jumpTo={jumpTo}
-        />
-        <div>
-          <b>tic tac toe</b>
-          <p className="mb-5">
-            coordinates are listed in <code>(row, col)</code> format with<br></br>the origin at the
-            top left.
-          </p>
-          <b>rules</b>
-          <p className="mb-8">are you serious?</p>
-          <Link
-            href="/"
-            className="rounded-xl bg-red-100 p-2 hover:bg-red-200"
-          >
-            go back home
-          </Link>
+        <div className="flex h-20 min-w-[295px] max-w-[295px] items-center justify-center rounded-3xl bg-gray-200">
+          {status}
         </div>
+      </div>
+      <div className="order-3">
+        <b>tic tac toe</b>
+        <p className="mb-5">
+          coordinates are listed in <code>(row, col)</code> format with<br></br>the origin at the
+          top left.
+        </p>
+        <b>rules</b>
+        <p className="mb-8">are you serious?</p>
+        <Link
+          href="/"
+          className="rounded-xl bg-red-100 p-2 hover:bg-red-200"
+        >
+          go back home
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <>
+      <Head>
+        <title>tic tac toe</title>
+      </Head>
+      <main className="flex min-h-screen items-center justify-center">
+        <Game />
       </main>
     </>
   );
