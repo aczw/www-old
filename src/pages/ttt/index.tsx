@@ -74,14 +74,14 @@ function Board({
       const background = (() => {
         switch (gameState.s) {
           case "Playing":
-            return "bg-white";
+            return "bg-white hover:bg-gray-100";
           case "Draw":
-            return "bg-yellow-200";
+            return "bg-yellow-200 hover:bg-yellow-300";
           case "Win":
             const a = gameState.a.x === x && gameState.a.y === y;
             const b = gameState.b.x === x && gameState.b.y === y;
             const c = gameState.c.x === x && gameState.c.y === y;
-            return a || b || c ? "bg-green-300" : "bg-white";
+            return a || b || c ? "bg-green-300 hover:bg-green-400" : "bg-white hover:bg-gray-100";
         }
       })();
 
@@ -233,7 +233,7 @@ function MoveList({
   });
 
   return (
-    <div className="order-2 h-full min-w-[295px] max-w-[295px] rounded-3xl bg-gray-200 p-5">
+    <div className="h-[510px] min-w-[295px] rounded-3xl bg-gray-200 p-5">
       <p className="ml-3">move history</p>
       <button
         className="mb-5 ml-3 rounded-md border-2 border-black bg-slate-300 px-1 hover:bg-slate-400"
@@ -295,31 +295,14 @@ function Game() {
   })();
 
   return (
-    <div className="flex flex-col gap-6">
-      <MoveList
-        history={history}
-        currentMove={currentMove}
-        jumpTo={jumpTo}
-      />
-      <div className="order-1 flex flex-col space-y-6">
-        <div className="w-max min-w-max rounded-3xl bg-gray-200 p-8 pr-[35px] pt-[35px]">
-          <Board
-            xIsNext={xIsNext}
-            squares={currentSquares}
-            gameState={gameState}
-            onPlay={handlePlay}
-          />
-        </div>
-        <div className="flex h-20 min-w-[295px] max-w-[295px] items-center justify-center rounded-3xl bg-gray-200">
-          {status}
-        </div>
-      </div>
-      <div className="order-3 min-w-[295px] max-w-[295px]">
-        <b>tic tac toe</b>
-        <p>
-          coordinates are listed in <code>(row, col)</code> format with the origin at the top left.
+    <>
+      <div className="mt-16 h-full max-w-[295px] rounded-3xl bg-gray-200 p-8">
+        <b className="text-xl">tic tac toe</b>
+        <p className="mx-auto mb-5">
+          coordinates are listed in <code className="inline-block">(row, col)</code> format with the
+          origin at the top left.
         </p>
-        <b>rules</b>
+        <b className="text-xl">rules</b>
         <p className="mb-8">are you serious?</p>
         <Link
           href="/"
@@ -328,7 +311,23 @@ function Game() {
           go back home
         </Link>
       </div>
-    </div>
+      <div className="space-y-6">
+        <div className="w-max min-w-max rounded-3xl bg-gray-200 p-8 pr-[35px] pt-[35px]">
+          <Board
+            xIsNext={xIsNext}
+            squares={currentSquares}
+            gameState={gameState}
+            onPlay={handlePlay}
+          />
+        </div>
+        <div className="h-20 w-[295px] rounded-3xl bg-gray-200">{status}</div>
+      </div>
+      <MoveList
+        history={history}
+        currentMove={currentMove}
+        jumpTo={jumpTo}
+      />
+    </>
   );
 }
 
@@ -338,7 +337,7 @@ export default function App() {
       <Head>
         <title>tic tac toe</title>
       </Head>
-      <main className="flex min-h-screen items-center justify-center">
+      <main className="flex min-h-screen flex-row items-center justify-center gap-6">
         <Game />
       </main>
     </>
