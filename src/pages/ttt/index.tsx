@@ -308,7 +308,7 @@ const Game = () => {
               go back home
             </button>
           </Link>
-          <h1 className="mt-4 text-2xl font-bold">tic tac toe</h1>
+          <h1 className="mt-4 text-2xl font-bold">tic-tac-toe</h1>
           <p className="text-base">created using the React tutorial on their website. have fun.</p>
           <h1 className="mt-4 text-2xl font-bold">how to play</h1>
           <p className="text-base">are you serious?</p>
@@ -340,7 +340,11 @@ const App = () => {
   return (
     <>
       <Head>
-        <title>tic tac toe</title>
+        <title>tic-tac-toe</title>
+        <meta
+          name="description"
+          content="tic-tac-toe with time travel"
+        />
       </Head>
       <main className="flex min-h-screen items-center justify-center">
         <Game />
