@@ -3,18 +3,15 @@ import Link from "next/link";
 
 const Home = () => {
   return (
-    <>
-      <Head>
-        <title>aczw</title>
-        <link
-          rel="icon"
-          href="/favicon.ico"
-        />
-      </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-otherworld-600">
-        <div className="mb-10 flex flex-col items-start">
+    <main className="min-h-screen bg-otherworld-600">
+      <header
+        className="min-w-full bg-otherworld-500 p-8 md:min-h-screen md:w-1/3"
+        role="banner"
+      >
+        <div className="flex flex-col items-start">
           <button
             className="group z-10"
+            type="button"
             onClick={() => alert("hi")}
           >
             <svg
@@ -32,15 +29,30 @@ const Home = () => {
           </button>
           <div className="z-0 -mt-4 select-none text-8xl font-bold text-otherworld-200">aczw</div>
         </div>
-        <Link
-          href="/ttt"
-          className="rounded-xl bg-otherworld-500 p-8 text-xl text-otherworld-100 hover:bg-otherworld-400"
-        >
-          tic tac toe
-        </Link>
-      </main>
+      </header>
+      <Link
+        href="/ttt"
+        className="rounded-xl bg-otherworld-500 p-8 text-xl text-otherworld-100 hover:bg-otherworld-400"
+      >
+        tic tac toe
+      </Link>
+    </main>
+  );
+};
+
+const App = () => {
+  return (
+    <>
+      <Head>
+        <title>aczw</title>
+        <link
+          rel="icon"
+          href="/favicon.ico"
+        />
+      </Head>
+      <Home />
     </>
   );
 };
 
-export default Home;
+export default App;
