@@ -37,7 +37,7 @@ const Header = () => {
         <button
           className="group z-10"
           type="button"
-          onClick={() => alert("hi")}
+          onClick={() => alert("hi! WIP")}
         >
           <Logo
             className="fill-otherworld-200 transition group-hover:fill-dash-200"
@@ -56,26 +56,26 @@ const Header = () => {
         </p>
         <button
           className="rounded-[25px] bg-otherworld-200 px-4 py-2 text-2xl font-bold text-otherworld-600 transition-all hover:rounded-xl hover:bg-dash-100 hover:text-dash-600"
-          onClick={() => alert("resume!")}
+          onClick={() => alert("resume! WIP")}
         >
-          Resume <span className="font-mono">→</span>
+          Resume <span className="font-mono text-3xl">→</span>
         </button>
       </div>
       <div className="flex h-auto flex-col items-start bg-otherworld-500 p-12 text-2xl text-otherworld-100">
         <p className="mb-6">Check out my other stuff!</p>
         <a
-          className="underline underline-offset-4 transition after:font-mono after:no-underline after:content-['↗'] hover:text-dash-100"
+          className="underline underline-offset-4 transition hover:text-dash-100"
           href="https://github.com/aczw"
           target="_blank"
         >
-          GitHub
+          GitHub <span className="font-mono">↗</span>
         </a>
         <a
-          className="underline underline-offset-4 transition after:font-mono after:no-underline after:content-['↗'] hover:text-dash-100"
+          className="underline underline-offset-4 transition hover:text-dash-100"
           href="https://behance.net/charleszw"
           target="_blank"
         >
-          Behance
+          Behance <span className="font-mono">↗</span>
         </a>
       </div>
     </header>
@@ -88,7 +88,7 @@ const Home = () => {
       <Header />
       <main className="h-auto bg-otherworld-600 lg:ml-[34rem] lg:min-h-screen">
         <section className="flex flex-col items-center justify-center space-y-5 p-10">
-          <h1 className="text-2xl text-otherworld-100">projects lmao</h1>
+          <h1 className="text-2xl text-otherworld-100">just testing scrolling... move along...</h1>
           <Link
             href="/ttt"
             className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
@@ -130,7 +130,7 @@ const Home = () => {
           </Link>
         </section>
         <section className="flex flex-col items-center justify-center space-y-5 p-10">
-          <h1 className="text-2xl text-otherworld-100">projects lmao</h1>
+          <h1 className="text-2xl text-otherworld-100">just testing scrolling... move along...</h1>
           <Link
             href="/ttt"
             className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
