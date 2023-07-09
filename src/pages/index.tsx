@@ -15,7 +15,7 @@ const Logo = ({
       width={width}
       height={height}
       xmlns="http://www.w3.org/2000/svg"
-      viewBox={`0 0 ${width} ${height}}`}
+      viewBox="0 0 100 100"
     >
       <path
         className={className}
@@ -42,8 +42,8 @@ const Home = () => {
           >
             <Logo
               className="fill-otherworld-200 transition group-hover:fill-dash-200"
-              width={100}
-              height={100}
+              width={90}
+              height={90}
             />
           </button>
           <div className="z-0 -mt-10 select-none text-[110px] font-bold text-otherworld-200">
@@ -53,7 +53,7 @@ const Home = () => {
         <div className="px-12 pb-12">
           <p className="mb-7 text-2xl text-otherworld-100">
             Hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
-            of Pennsylvania. I{"'"}m interested in graphics programming and design!
+            of Pennsylvania. I{"'"}m interested in graphics programming and design {":)"}
           </p>
           <button
             className="rounded-[25px] bg-otherworld-200 px-4 py-2 text-2xl font-bold text-otherworld-600 transition-all hover:rounded-xl hover:bg-dash-100 hover:text-dash-600"
@@ -63,7 +63,7 @@ const Home = () => {
           </button>
         </div>
         <div className="flex h-full w-full flex-col items-start bg-otherworld-500 p-12 text-2xl text-otherworld-100">
-          <p className="mb-6">Other stuff to check out:</p>
+          <p className="mb-6">Check out my other stuff!</p>
           <a
             className="underline underline-offset-4 after:no-underline after:content-['↗'] hover:text-dash-100"
             href="https://github.com/aczw"
