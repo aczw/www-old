@@ -30,7 +30,7 @@ const Logo = ({
 const Header = () => {
   return (
     <header
-      className="flex h-auto w-full flex-col justify-between bg-otherworld-400 lg:fixed lg:h-full lg:w-[34rem]"
+      className="flex h-auto w-full flex-col justify-between bg-otherworld-400 lg:fixed lg:h-full lg:w-[34rem] lg:overflow-y-auto"
       role="banner"
     >
       <div className="flex flex-col items-start pl-12 pt-12">
