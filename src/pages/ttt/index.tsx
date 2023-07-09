@@ -309,7 +309,9 @@ const Game = () => {
             </button>
           </Link>
           <h1 className="mt-4 text-2xl font-bold">tic-tac-toe</h1>
-          <p className="text-base">created using the React tutorial on their website. have fun.</p>
+          <p className="text-base">
+            created by following the React tutorial from their website. have fun.
+          </p>
           <h1 className="mt-4 text-2xl font-bold">how to play</h1>
           <p className="text-base">are you serious?</p>
         </div>
@@ -322,7 +324,7 @@ const Game = () => {
               onPlay={handlePlay}
             />
           </div>
-          <div className="flex h-20 w-[295px] items-center justify-center rounded-3xl bg-gray-200 text-4xl font-bold text-gray-500">
+          <div className="flex h-20 w-[295px] select-none items-center justify-center rounded-3xl bg-gray-200 text-4xl font-bold text-gray-500">
             {status}
           </div>
         </div>

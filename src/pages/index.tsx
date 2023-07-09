@@ -3,12 +3,12 @@ import Link from "next/link";
 
 const Home = () => {
   return (
-    <main className="min-h-screen bg-otherworld-600">
+    <main className="min-h-screen bg-otherworld-600 lg:flex lg:flex-row">
       <header
-        className="min-w-full bg-otherworld-500 p-8 md:min-h-screen md:w-1/3"
+        className="flex h-full min-w-full flex-col justify-between bg-otherworld-400 lg:min-h-screen lg:w-[36rem] lg:min-w-0"
         role="banner"
       >
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start pl-12 pt-12">
           <button
             className="group z-10"
             type="button"
@@ -27,15 +27,61 @@ const Home = () => {
               />
             </svg>
           </button>
-          <div className="z-0 -mt-4 select-none text-8xl font-bold text-otherworld-200">aczw</div>
+          <div className="z-0 -mt-10 select-none text-[110px] font-bold text-otherworld-200">
+            aczw
+          </div>
+        </div>
+        <div className="px-12 pb-12">
+          <p className="mb-7 text-2xl text-otherworld-100">
+            Hi, my name is <span className="font-bold">Charles Wang.</span> I{"'"}m a computer
+            graphics student at the University of Pennsylvania. I want to learn more about graphics
+            programming and design {":)"}
+          </p>
+          <button
+            className="rounded-[25px] bg-otherworld-200 px-4 py-2 text-2xl font-bold text-otherworld-600 transition-all hover:rounded-xl hover:bg-dash-100 hover:text-dash-600"
+            onClick={() => alert("resume!")}
+          >
+            Resume <span className="font-mono">→</span>
+          </button>
+        </div>
+        <div className="flex h-full w-full flex-col items-start bg-otherworld-500 p-12 text-2xl text-otherworld-100">
+          <p className="mb-6">Other stuff to check out:</p>
+          <a
+            className="underline underline-offset-4 after:no-underline after:content-['↗'] hover:text-dash-100"
+            href="https://github.com/aczw"
+            target="_blank"
+          >
+            GitHub
+          </a>
+          <a
+            className="underline underline-offset-4 after:font-mono after:no-underline after:content-['↗'] hover:text-dash-100"
+            href="https://behance.net/charleszw"
+            target="_blank"
+          >
+            Behance
+          </a>
         </div>
       </header>
-      <Link
-        href="/ttt"
-        className="rounded-xl bg-otherworld-500 p-8 text-xl text-otherworld-100 hover:bg-otherworld-400"
-      >
-        tic tac toe
-      </Link>
+      <div className="flex h-full flex-col items-center justify-center space-y-5 p-10">
+        <Link
+          href="/ttt"
+          className="h-12 w-40 rounded-xl bg-otherworld-300 p-8 text-xl text-otherworld-100 transition hover:bg-otherworld-400"
+        >
+          tic tac toe
+        </Link>
+        <Link
+          href="/ttt"
+          className="h-12 w-40 rounded-xl bg-otherworld-300 p-8 text-xl text-otherworld-100 transition hover:bg-otherworld-400"
+        >
+          tic tac toe
+        </Link>
+        <Link
+          href="/ttt"
+          className="h-12 w-40 rounded-xl bg-otherworld-300 p-8 text-xl text-otherworld-100 transition hover:bg-otherworld-400"
+        >
+          tic tac toe
+        </Link>
+      </div>
     </main>
   );
 };
