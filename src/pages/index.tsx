@@ -52,9 +52,8 @@ const Home = () => {
         </div>
         <div className="px-12 pb-12">
           <p className="mb-7 text-2xl text-otherworld-100">
-            Hi, my name is <span className="font-bold">Charles Wang.</span> I{"'"}m a computer
-            graphics student at the University of Pennsylvania. I want to learn more about graphics
-            programming and design {":)"}
+            Hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
+            of Pennsylvania. I{"'"}m interested in graphics programming and design!
           </p>
           <button
             className="rounded-[25px] bg-otherworld-200 px-4 py-2 text-2xl font-bold text-otherworld-600 transition-all hover:rounded-xl hover:bg-dash-100 hover:text-dash-600"
