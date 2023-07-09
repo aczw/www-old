@@ -27,60 +27,66 @@ const Logo = ({
   );
 };
 
+const Header = () => {
+  return (
+    <header
+      className="flex h-auto w-full flex-col justify-between bg-otherworld-400 lg:fixed lg:h-full lg:w-[34rem]"
+      role="banner"
+    >
+      <div className="flex flex-col items-start pl-12 pt-12">
+        <button
+          className="group z-10"
+          type="button"
+          onClick={() => alert("hi")}
+        >
+          <Logo
+            className="fill-otherworld-200 transition group-hover:fill-dash-200"
+            width={90}
+            height={90}
+          />
+        </button>
+        <div className="z-0 -mt-10 select-none text-[110px] font-bold text-otherworld-200">
+          aczw
+        </div>
+      </div>
+      <div className="px-12 pb-12">
+        <p className="mb-7 text-2xl text-otherworld-100">
+          Hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
+          of Pennsylvania. I{"'"}m interested in graphics programming and design {":)"}
+        </p>
+        <button
+          className="rounded-[25px] bg-otherworld-200 px-4 py-2 text-2xl font-bold text-otherworld-600 transition-all hover:rounded-xl hover:bg-dash-100 hover:text-dash-600"
+          onClick={() => alert("resume!")}
+        >
+          Resume <span className="font-mono">→</span>
+        </button>
+      </div>
+      <div className="flex h-auto flex-col items-start bg-otherworld-500 p-12 text-2xl text-otherworld-100">
+        <p className="mb-6">Check out my other stuff!</p>
+        <a
+          className="underline underline-offset-4 transition after:font-mono after:no-underline after:content-['↗'] hover:text-dash-100"
+          href="https://github.com/aczw"
+          target="_blank"
+        >
+          GitHub
+        </a>
+        <a
+          className="underline underline-offset-4 transition after:font-mono after:no-underline after:content-['↗'] hover:text-dash-100"
+          href="https://behance.net/charleszw"
+          target="_blank"
+        >
+          Behance
+        </a>
+      </div>
+    </header>
+  );
+};
+
 const Home = () => {
   return (
     <>
-      <header
-        className="flex min-h-screen min-w-full flex-col justify-between bg-otherworld-400 lg:fixed lg:left-0 lg:top-0 lg:min-h-screen lg:min-w-0 lg:max-w-[34rem]"
-        role="banner"
-      >
-        <div className="flex flex-col items-start pl-12 pt-12">
-          <button
-            className="group z-10"
-            type="button"
-            onClick={() => alert("hi")}
-          >
-            <Logo
-              className="fill-otherworld-200 transition group-hover:fill-dash-200"
-              width={90}
-              height={90}
-            />
-          </button>
-          <div className="z-0 -mt-10 select-none text-[110px] font-bold text-otherworld-200">
-            aczw
-          </div>
-        </div>
-        <div className="px-12 pb-12">
-          <p className="mb-7 text-2xl text-otherworld-100">
-            Hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
-            of Pennsylvania. I{"'"}m interested in graphics programming and design {":)"}
-          </p>
-          <button
-            className="rounded-[25px] bg-otherworld-200 px-4 py-2 text-2xl font-bold text-otherworld-600 transition-all hover:rounded-xl hover:bg-dash-100 hover:text-dash-600"
-            onClick={() => alert("resume!")}
-          >
-            Resume <span className="font-mono">→</span>
-          </button>
-        </div>
-        <div className="flex h-full w-full flex-col items-start bg-otherworld-500 p-12 text-2xl text-otherworld-100">
-          <p className="mb-6">Check out my other stuff!</p>
-          <a
-            className="underline underline-offset-4 transition after:no-underline after:content-['↗'] hover:text-dash-100"
-            href="https://github.com/aczw"
-            target="_blank"
-          >
-            GitHub
-          </a>
-          <a
-            className="underline underline-offset-4 transition after:font-mono after:no-underline after:content-['↗'] hover:text-dash-100"
-            href="https://behance.net/charleszw"
-            target="_blank"
-          >
-            Behance
-          </a>
-        </div>
-      </header>
-      <main className="h-full bg-otherworld-600 lg:ml-[34rem] lg:min-h-screen">
+      <Header />
+      <main className="h-auto bg-otherworld-600 lg:ml-[34rem] lg:min-h-screen">
         <section className="flex flex-col items-center justify-center space-y-5 p-10">
           <h1 className="text-2xl text-otherworld-100">projects lmao</h1>
           <Link
