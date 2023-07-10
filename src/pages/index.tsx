@@ -18,7 +18,7 @@ const Logo = ({ svgClass, pathClass }: { svgClass: string; pathClass: string }) 
   );
 };
 
-const Header = () => {
+const StickyHeader = () => {
   return (
     <header
       className="flex h-auto w-full flex-col justify-between bg-otherworld-400 lg:fixed lg:h-full lg:w-[34rem] lg:overflow-y-auto"
@@ -94,7 +94,7 @@ const Header = () => {
 const Home = () => {
   return (
     <>
-      <Header />
+      <StickyHeader />
       <main className="h-auto bg-otherworld-600 lg:ml-[34rem] lg:min-h-screen">
         <section className="flex flex-col items-center justify-center space-y-5 p-10">
           <h1 className="text-2xl text-otherworld-100">just testing scrolling... move along...</h1>
