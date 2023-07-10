@@ -44,12 +44,17 @@ const Header = () => {
           Hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
           of Pennsylvania. I{"'"}m interested in graphics programming and design {":)"}
         </p>
-        <button
-          className="rounded-[25px] bg-otherworld-200 px-4 py-2 text-xl font-bold text-otherworld-600 transition-all hover:rounded-xl hover:bg-dash-100 hover:text-dash-600 lg:text-2xl"
-          onClick={() => alert("resume! WIP")}
+        <div
+          className="w-fit rounded-[25px] bg-otherworld-200 px-4 py-2 text-xl font-bold text-otherworld-600 transition-all hover:rounded-xl hover:bg-dash-100 hover:text-dash-600 lg:text-2xl"
+          role="button"
         >
-          Resume <span className="font-mono">→</span>
-        </button>
+          <Link
+            href="/resume_3_11_2023.pdf"
+            target="_blank"
+          >
+            Resume <span className="font-mono">→</span>
+          </Link>
+        </div>
       </div>
       <div className="flex h-auto flex-col items-start bg-otherworld-500 p-12 text-xl text-otherworld-100 lg:text-2xl">
         <p className="mb-6">Check out some other stuff:</p>
@@ -156,7 +161,7 @@ const App = () => {
   return (
     <>
       <Head>
-        <title>home</title>
+        <title>Charles Wang</title>
         <link
           rel="icon"
           href="/favicon.ico"
