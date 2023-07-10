@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import UnderlineExternalLink from "~/components/underlineExternalLink";
 
 const Logo = ({ svgClass, pathClass }: { svgClass: string; pathClass: string }) => {
   return (
@@ -58,34 +59,18 @@ const StickyHeader = () => {
       </div>
       <div className="flex h-auto flex-col items-start bg-otherworld-500 p-12 text-xl text-otherworld-100 lg:text-2xl">
         <p className="mb-6">Check out some other stuff:</p>
-        <a
-          className="underline underline-offset-4 transition hover:text-dash-100"
-          href="https://www.linkedin.com/in/aczw/"
-          target="_blank"
-        >
+        <UnderlineExternalLink href="https://www.linkedin.com/in/aczw/">
           LinkedIn <span className="font-mono">↗</span>
-        </a>
-        <a
-          className="underline underline-offset-4 transition hover:text-dash-100"
-          href="https://github.com/aczw"
-          target="_blank"
-        >
+        </UnderlineExternalLink>
+        <UnderlineExternalLink href="https://github.com/aczw/">
           GitHub <span className="font-mono">↗</span>
-        </a>
-        <a
-          className="underline underline-offset-4 transition hover:text-dash-100"
-          href="https://behance.net/charleszw"
-          target="_blank"
-        >
+        </UnderlineExternalLink>
+        <UnderlineExternalLink href="https://behance.net/charleszw/">
           Behance <span className="font-mono">↗</span>
-        </a>
-        <a
-          className="underline underline-offset-4 transition hover:text-dash-100"
-          href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU"
-          target="_blank"
-        >
+        </UnderlineExternalLink>
+        <UnderlineExternalLink href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/">
           Current Spotify playlist <span className="font-mono">↗</span>
-        </a>
+        </UnderlineExternalLink>
       </div>
     </header>
   );
