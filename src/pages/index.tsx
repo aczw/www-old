@@ -49,7 +49,7 @@ const Header = () => {
           role="button"
         >
           <Link
-            href="/resume_3_11_2023.pdf"
+            href="/resume_7_10_2023.pdf"
             target="_blank"
           >
             Resume <span className="font-mono">→</span>
@@ -58,6 +58,13 @@ const Header = () => {
       </div>
       <div className="flex h-auto flex-col items-start bg-otherworld-500 p-12 text-xl text-otherworld-100 lg:text-2xl">
         <p className="mb-6">Check out some other stuff:</p>
+        <a
+          className="underline underline-offset-4 transition hover:text-dash-100"
+          href="https://www.linkedin.com/in/aczw/"
+          target="_blank"
+        >
+          LinkedIn <span className="font-mono">↗</span>
+        </a>
         <a
           className="underline underline-offset-4 transition hover:text-dash-100"
           href="https://github.com/aczw"
