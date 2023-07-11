@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Link from "next/link";
+import CustomButtonLink from "~/components/customButtonLink";
 import ExternalLink from "~/components/externalLink";
 
 const Logo = ({ svgClass, pathClass }: { svgClass: string; pathClass: string }) => {
@@ -45,30 +45,23 @@ const FlexibleHeader = () => {
           Hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
           of Pennsylvania. I{"'"}m interested in graphics programming and design {":)"}
         </p>
-        <div
-          className="w-fit rounded-[25px] bg-otherworld-200 px-4 py-2 text-xl font-bold text-otherworld-600 transition-all hover:rounded-xl hover:bg-dash-100 hover:text-dash-600 lg:text-2xl"
-          role="button"
-        >
-          <Link
-            href="/resume_7_10_2023.pdf"
-            target="_blank"
-            className="flex flex-row items-center gap-1 lg:gap-2"
+        <CustomButtonLink href="/resume_7_10_2023.pdf">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            className="h-5 w-5 fill-otherworld-600 hover:fill-dash-600 lg:h-6 lg:w-6"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="h-5 w-5 lg:h-6 lg:w-6"
-            >
-              <path
-                fillRule="evenodd"
-                d="M4.5 2A1.5 1.5 0 003 3.5v13A1.5 1.5 0 004.5 18h11a1.5 1.5 0 001.5-1.5V7.621a1.5 1.5 0 00-.44-1.06l-4.12-4.122A1.5 1.5 0 0011.378 2H4.5zm2.25 8.5a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5zm0 3a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <path
+              fillRule="evenodd"
+              d="M4.5 2A1.5 1.5 0 003 3.5v13A1.5 1.5 0 004.5 18h11a1.5 1.5 0 001.5-1.5V7.621a1.5 1.5 0 00-.44-1.06l-4.12-4.122A1.5 1.5 0 0011.378 2H4.5zm2.25 8.5a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5zm0 3a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <span className="text-xl font-bold text-otherworld-600 hover:text-dash-600 lg:text-2xl">
             Resume
-          </Link>
-        </div>
+          </span>
+        </CustomButtonLink>
       </div>
       <div className="h-auto bg-otherworld-500 p-9 text-xl text-otherworld-100 lg:p-12 lg:text-2xl">
         <p className="mb-4 lg:mb-6">Other stuff you should check out:</p>
@@ -96,28 +89,46 @@ const Content = () => {
             <p className="text-xl">
               tic-tac-toe, React style. followed the tutorial from their website.
             </p>
-            <div>
-              <Link
-                href="/ttt"
-                className="items-center justify-center rounded-xl bg-otherworld-200 p-1 px-4 py-2 text-center text-xl text-otherworld-600 transition hover:bg-dash-100 hover:text-dash-600"
+            <CustomButtonLink href="/ttt">
+              <span className="text-xl font-bold text-otherworld-600 hover:text-dash-600">
+                Play
+              </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="h-5 w-5 fill-otherworld-600 hover:fill-dash-600 lg:h-6 lg:w-6"
               >
-                go!
-              </Link>
-            </div>
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.75 9.25a.75.75 0 000 1.5h4.59l-2.1 1.95a.75.75 0 001.02 1.1l3.5-3.25a.75.75 0 000-1.1l-3.5-3.25a.75.75 0 10-1.02 1.1l2.1 1.95H6.75z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </CustomButtonLink>
           </div>
           <div className="h-auto w-full space-y-5 rounded-2xl bg-otherworld-500 p-9">
             <h2 className="font-mono text-4xl font-bold">ttt</h2>
             <p className="text-xl">
               tic-tac-toe, React style. followed the tutorial from their website.
             </p>
-            <div>
-              <Link
-                href="/ttt"
-                className="items-center justify-center rounded-xl bg-otherworld-200 p-1 px-4 py-2 text-center text-xl text-otherworld-600 transition hover:bg-dash-100 hover:text-dash-600"
+            <CustomButtonLink href="/ttt">
+              <span className="text-xl font-bold text-otherworld-600 hover:text-dash-600">
+                Play
+              </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="h-5 w-5 fill-otherworld-600 hover:fill-dash-600 lg:h-6 lg:w-6"
               >
-                go!
-              </Link>
-            </div>
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.75 9.25a.75.75 0 000 1.5h4.59l-2.1 1.95a.75.75 0 001.02 1.1l3.5-3.25a.75.75 0 000-1.1l-3.5-3.25a.75.75 0 10-1.02 1.1l2.1 1.95H6.75z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </CustomButtonLink>
           </div>
         </div>
       </section>

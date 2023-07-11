@@ -1,7 +1,7 @@
 import assert from "assert";
 import Head from "next/head";
 import Link from "next/link";
-import { useState, type ReactElement } from "react";
+import { useState } from "react";
 
 type Grid = [[string, string, string], [string, string, string], [string, string, string]];
 type GameState =
@@ -67,7 +67,7 @@ const Board = ({
     onPlay(nextSquares, { x, y });
   }
 
-  const grid: ReactElement[] = [];
+  const grid: React.ReactElement[] = [];
 
   squares.forEach((row, y) => {
     row.forEach((symbol, x) => {
