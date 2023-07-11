@@ -58,7 +58,7 @@ const FlexibleHeader = () => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="h-4 w-4 lg:h-5 lg:w-5"
+              className="h-5 w-5 lg:h-6 lg:w-6"
             >
               <path
                 fillRule="evenodd"
@@ -92,68 +92,38 @@ const FlexibleHeader = () => {
 const Content = () => {
   return (
     <main className="h-auto bg-otherworld-600 lg:ml-[34rem] lg:min-h-screen">
-      <section className="flex flex-col items-center justify-center space-y-5 p-9">
-        <h1 className="text-2xl text-otherworld-100">just testing scrolling... move along...</h1>
-        <Link
-          href="/ttt"
-          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-        >
-          tic tac toe
-        </Link>
-        <Link
-          href="/ttt"
-          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-        >
-          tic tac toe
-        </Link>
-        <Link
-          href="/ttt"
-          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-        >
-          tic tac toe
-        </Link>
-      </section>
-      <section className="flex flex-col items-center justify-center space-y-5 p-10">
-        <h1 className="text-2xl text-otherworld-100">projects lmao</h1>
-        <Link
-          href="/ttt"
-          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-        >
-          tic tac toe
-        </Link>
-        <Link
-          href="/ttt"
-          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-        >
-          tic tac toe
-        </Link>
-        <Link
-          href="/ttt"
-          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-        >
-          tic tac toe
-        </Link>
-      </section>
-      <section className="flex flex-col items-center justify-center space-y-5 p-10">
-        <h1 className="text-2xl text-otherworld-100">just testing scrolling... move along...</h1>
-        <Link
-          href="/ttt"
-          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-        >
-          tic tac toe
-        </Link>
-        <Link
-          href="/ttt"
-          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-        >
-          tic tac toe
-        </Link>
-        <Link
-          href="/ttt"
-          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-        >
-          tic tac toe
-        </Link>
+      <section className="flex flex-col items-start space-y-5 p-9 text-otherworld-100 lg:p-12">
+        <h1 className="text-5xl font-bold text-otherworld-100">Projects</h1>
+        <div className="grid w-full grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+          <div className="h-auto w-full space-y-5 rounded-2xl bg-otherworld-500 p-9">
+            <h2 className="font-mono text-4xl font-bold">ttt</h2>
+            <p className="text-xl">
+              tic-tac-toe, React style. followed the tutorial from their website.
+            </p>
+            <div>
+              <Link
+                href="/ttt"
+                className="items-center justify-center rounded-xl bg-otherworld-200 p-1 px-4 py-2 text-center text-xl text-otherworld-600 transition hover:bg-dash-100 hover:text-dash-600"
+              >
+                go!
+              </Link>
+            </div>
+          </div>
+          <div className="h-auto w-full space-y-5 rounded-2xl bg-otherworld-500 p-9">
+            <h2 className="font-mono text-4xl font-bold">ttt</h2>
+            <p className="text-xl">
+              tic-tac-toe, React style. followed the tutorial from their website.
+            </p>
+            <div>
+              <Link
+                href="/ttt"
+                className="items-center justify-center rounded-xl bg-otherworld-200 p-1 px-4 py-2 text-center text-xl text-otherworld-600 transition hover:bg-dash-100 hover:text-dash-600"
+              >
+                go!
+              </Link>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );
