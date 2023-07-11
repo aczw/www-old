@@ -52,13 +52,13 @@ const FlexibleHeader = () => {
           <Link
             href="/resume_7_10_2023.pdf"
             target="_blank"
-            className="flex flex-row items-center gap-2"
+            className="flex flex-row items-center gap-1 lg:gap-2"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="h-5 w-5"
+              className="h-4 w-4 lg:h-5 lg:w-5"
             >
               <path
                 fillRule="evenodd"
@@ -81,7 +81,7 @@ const FlexibleHeader = () => {
             Behance
           </UnderlineExternalLink>
           <UnderlineExternalLink href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/">
-            Current Spotify playlist
+            Current playlist
           </UnderlineExternalLink>
         </div>
       </div>
