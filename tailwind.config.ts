@@ -4,6 +4,10 @@ export default {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-atkinson)"],
+        mono: ["var(--font-plex-mono)"],
+      },
       colors: {
         otherworld: {
           100: "#DFC9FF",
