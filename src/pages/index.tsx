@@ -19,7 +19,7 @@ const Logo = ({ svgClass, pathClass }: { svgClass: string; pathClass: string }) 
   );
 };
 
-const StickyHeader = () => {
+const FlexibleHeader = () => {
   return (
     <header
       className="flex h-auto w-full flex-col justify-between bg-otherworld-400 lg:fixed lg:h-full lg:w-[34rem] lg:overflow-y-auto"
@@ -78,76 +78,73 @@ const StickyHeader = () => {
   );
 };
 
-const Home = () => {
+const Content = () => {
   return (
-    <div className="min-h-screen bg-otherworld-600">
-      <StickyHeader />
-      <main className="h-auto bg-otherworld-600 lg:ml-[34rem] lg:min-h-screen">
-        <section className="flex flex-col items-center justify-center space-y-5 p-10">
-          <h1 className="text-2xl text-otherworld-100">just testing scrolling... move along...</h1>
-          <Link
-            href="/ttt"
-            className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-          >
-            tic tac toe
-          </Link>
-          <Link
-            href="/ttt"
-            className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-          >
-            tic tac toe
-          </Link>
-          <Link
-            href="/ttt"
-            className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-          >
-            tic tac toe
-          </Link>
-        </section>
-        <section className="flex flex-col items-center justify-center space-y-5 p-10">
-          <h1 className="text-2xl text-otherworld-100">projects lmao</h1>
-          <Link
-            href="/ttt"
-            className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-          >
-            tic tac toe
-          </Link>
-          <Link
-            href="/ttt"
-            className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-          >
-            tic tac toe
-          </Link>
-          <Link
-            href="/ttt"
-            className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-          >
-            tic tac toe
-          </Link>
-        </section>
-        <section className="flex flex-col items-center justify-center space-y-5 p-10">
-          <h1 className="text-2xl text-otherworld-100">just testing scrolling... move along...</h1>
-          <Link
-            href="/ttt"
-            className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-          >
-            tic tac toe
-          </Link>
-          <Link
-            href="/ttt"
-            className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-          >
-            tic tac toe
-          </Link>
-          <Link
-            href="/ttt"
-            className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
-          >
-            tic tac toe
-          </Link>
-        </section>
-      </main>
-    </div>
+    <main className="h-auto bg-otherworld-600 lg:ml-[34rem] lg:min-h-screen">
+      <section className="flex flex-col items-center justify-center space-y-5 p-10">
+        <h1 className="text-2xl text-otherworld-100">just testing scrolling... move along...</h1>
+        <Link
+          href="/ttt"
+          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
+        >
+          tic tac toe
+        </Link>
+        <Link
+          href="/ttt"
+          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
+        >
+          tic tac toe
+        </Link>
+        <Link
+          href="/ttt"
+          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
+        >
+          tic tac toe
+        </Link>
+      </section>
+      <section className="flex flex-col items-center justify-center space-y-5 p-10">
+        <h1 className="text-2xl text-otherworld-100">projects lmao</h1>
+        <Link
+          href="/ttt"
+          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
+        >
+          tic tac toe
+        </Link>
+        <Link
+          href="/ttt"
+          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
+        >
+          tic tac toe
+        </Link>
+        <Link
+          href="/ttt"
+          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
+        >
+          tic tac toe
+        </Link>
+      </section>
+      <section className="flex flex-col items-center justify-center space-y-5 p-10">
+        <h1 className="text-2xl text-otherworld-100">just testing scrolling... move along...</h1>
+        <Link
+          href="/ttt"
+          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
+        >
+          tic tac toe
+        </Link>
+        <Link
+          href="/ttt"
+          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
+        >
+          tic tac toe
+        </Link>
+        <Link
+          href="/ttt"
+          className="flex h-14 items-center justify-center rounded-xl bg-otherworld-300 p-8 text-center text-xl text-otherworld-100 transition hover:bg-dash-100"
+        >
+          tic tac toe
+        </Link>
+      </section>
+    </main>
   );
 };
 
@@ -161,7 +158,8 @@ const App = () => {
           href="/favicon.ico"
         />
       </Head>
-      <Home />
+      <FlexibleHeader />
+      <Content />
     </>
   );
 };
