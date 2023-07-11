@@ -3,7 +3,7 @@ import { type ReactNode } from "react";
 const UnderlineExternalLink = ({ href, children }: { href: string; children: ReactNode }) => {
   return (
     <a
-      className="flex w-fit flex-row items-center gap-1 underline underline-offset-4 transition hover:text-dash-100"
+      className="flex flex-row items-center gap-1 place-self-start underline underline-offset-4 transition hover:text-dash-100"
       href={href}
       target="_blank"
     >

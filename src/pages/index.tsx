@@ -25,7 +25,7 @@ const FlexibleHeader = () => {
       className="flex h-auto w-full flex-col justify-between bg-otherworld-400 lg:fixed lg:h-full lg:w-[34rem] lg:overflow-y-auto"
       role="banner"
     >
-      <div className="-mb-3 flex flex-col items-start pl-12 pt-12 lg:-mb-7">
+      <div className="-mb-3 flex flex-col items-start pl-9 pt-9 lg:-mb-7 lg:pl-12 lg:pt-12">
         <button
           className="group z-10"
           type="button"
@@ -40,7 +40,7 @@ const FlexibleHeader = () => {
           aczw
         </div>
       </div>
-      <div className="px-12 py-12">
+      <div className="p-9 lg:p-12">
         <p className="mb-8 text-xl text-otherworld-100 lg:text-2xl">
           Hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
           of Pennsylvania. I{"'"}m interested in graphics programming and design {":)"}
@@ -70,7 +70,7 @@ const FlexibleHeader = () => {
           </Link>
         </div>
       </div>
-      <div className="h-auto bg-otherworld-500 p-12 text-xl text-otherworld-100 lg:text-2xl">
+      <div className="h-auto bg-otherworld-500 p-9 text-xl text-otherworld-100 lg:p-12 lg:text-2xl">
         <p className="mb-4 lg:mb-6">Other stuff you should check out:</p>
         <div className="grid grid-cols-2 lg:grid-cols-1">
           <UnderlineExternalLink href="https://www.linkedin.com/in/aczw/">
@@ -92,7 +92,7 @@ const FlexibleHeader = () => {
 const Content = () => {
   return (
     <main className="h-auto bg-otherworld-600 lg:ml-[34rem] lg:min-h-screen">
-      <section className="flex flex-col items-center justify-center space-y-5 p-10">
+      <section className="flex flex-col items-center justify-center space-y-5 p-9">
         <h1 className="text-2xl text-otherworld-100">just testing scrolling... move along...</h1>
         <Link
           href="/ttt"
