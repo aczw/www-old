@@ -58,7 +58,7 @@ const FlexibleHeader = () => {
         </div>
       </div>
       <div className="h-auto bg-otherworld-500 p-12 text-xl text-otherworld-100 lg:text-2xl">
-        <p className="mb-4 lg:mb-6">Also check out some other stuff:</p>
+        <p className="mb-4 lg:mb-6">Other stuff you should check out!</p>
         <div className="grid grid-cols-2 lg:grid-cols-1">
           <UnderlineExternalLink href="https://www.linkedin.com/in/aczw/">
             LinkedIn <span className="font-mono">↗</span>
