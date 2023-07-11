@@ -53,24 +53,22 @@ const FlexibleHeader = () => {
             href="/resume_7_10_2023.pdf"
             target="_blank"
           >
-            Resume <span className="font-mono">→</span>
+            Resume
           </Link>
         </div>
       </div>
       <div className="h-auto bg-otherworld-500 p-12 text-xl text-otherworld-100 lg:text-2xl">
-        <p className="mb-4 lg:mb-6">Other stuff you should check out!</p>
+        <p className="mb-4 lg:mb-6">Other stuff you should check out:</p>
         <div className="grid grid-cols-2 lg:grid-cols-1">
           <UnderlineExternalLink href="https://www.linkedin.com/in/aczw/">
-            LinkedIn <span className="font-mono">↗</span>
+            LinkedIn
           </UnderlineExternalLink>
-          <UnderlineExternalLink href="https://github.com/aczw/">
-            GitHub <span className="font-mono">↗</span>
-          </UnderlineExternalLink>
+          <UnderlineExternalLink href="https://github.com/aczw/">GitHub</UnderlineExternalLink>
           <UnderlineExternalLink href="https://behance.net/charleszw/">
-            Behance <span className="font-mono">↗</span>
+            Behance
           </UnderlineExternalLink>
           <UnderlineExternalLink href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/">
-            Current Spotify playlist <span className="font-mono">↗</span>
+            Current Spotify playlist
           </UnderlineExternalLink>
         </div>
       </div>
