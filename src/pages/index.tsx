@@ -155,7 +155,23 @@ const App = () => {
         <title>Charles Wang</title>
         <link
           rel="icon"
-          href="/favicon.ico"
+          sizes="any"
+          type="image/svg+xml"
+          href="/favicon.svg"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="48x48"
+          href="/favicon-light.png"
+          media="(prefers-color-scheme: light)"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="48x48"
+          href="/favicon-dark.png"
+          media="(prefers-color-scheme: dark)"
         />
       </Head>
       <FlexibleHeader />
