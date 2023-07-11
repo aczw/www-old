@@ -1,6 +1,4 @@
-import { type ReactNode } from "react";
-
-const UnderlineExternalLink = ({ href, children }: { href: string; children: ReactNode }) => {
+const ExternalLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
   return (
     <a
       className="flex flex-row items-center gap-1 place-self-start underline underline-offset-4 transition hover:text-dash-100"
@@ -26,4 +24,4 @@ const UnderlineExternalLink = ({ href, children }: { href: string; children: Rea
   );
 };
 
-export default UnderlineExternalLink;
+export default ExternalLink;

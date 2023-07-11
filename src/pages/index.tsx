@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import UnderlineExternalLink from "~/components/underlineExternalLink";
+import ExternalLink from "~/components/externalLink";
 
 const Logo = ({ svgClass, pathClass }: { svgClass: string; pathClass: string }) => {
   return (
@@ -73,16 +73,12 @@ const FlexibleHeader = () => {
       <div className="h-auto bg-otherworld-500 p-9 text-xl text-otherworld-100 lg:p-12 lg:text-2xl">
         <p className="mb-4 lg:mb-6">Other stuff you should check out:</p>
         <div className="grid grid-cols-2 lg:grid-cols-1">
-          <UnderlineExternalLink href="https://www.linkedin.com/in/aczw/">
-            LinkedIn
-          </UnderlineExternalLink>
-          <UnderlineExternalLink href="https://github.com/aczw/">GitHub</UnderlineExternalLink>
-          <UnderlineExternalLink href="https://behance.net/charleszw/">
-            Behance
-          </UnderlineExternalLink>
-          <UnderlineExternalLink href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/">
+          <ExternalLink href="https://www.linkedin.com/in/aczw/">LinkedIn</ExternalLink>
+          <ExternalLink href="https://github.com/aczw/">GitHub</ExternalLink>
+          <ExternalLink href="https://behance.net/charleszw/">Behance</ExternalLink>
+          <ExternalLink href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/">
             Current playlist
-          </UnderlineExternalLink>
+          </ExternalLink>
         </div>
       </div>
     </header>
