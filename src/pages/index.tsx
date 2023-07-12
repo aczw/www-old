@@ -78,59 +78,66 @@ const FlexibleHeader = () => {
   );
 };
 
+const InfoCard = ({
+  heading,
+  imageUrl,
+  description,
+  href,
+  buttonText,
+}: {
+  heading: string;
+  imageUrl: string;
+  description: string;
+  href: string;
+  buttonText: string;
+}) => {
+  return (
+    <div className="h-auto w-full rounded-2xl bg-otherworld-500">
+      <h2 className="mb-5 pl-9 pt-9 font-mono text-4xl font-bold">{heading}</h2>
+      <div className="flex h-24 w-full items-center justify-center bg-otherworld-400">
+        <i className="font-mono">{imageUrl} here</i>
+      </div>
+      <div className="px-9 pb-9 pt-5">
+        <p className="mb-5 text-xl">{description}</p>
+        <CustomButtonLink href={href}>
+          <span className="text-xl font-bold text-otherworld-600 hover:text-dash-600">
+            {buttonText}
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            className="h-5 w-5 fill-otherworld-600 hover:fill-dash-600 lg:h-6 lg:w-6"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.75 9.25a.75.75 0 000 1.5h4.59l-2.1 1.95a.75.75 0 001.02 1.1l3.5-3.25a.75.75 0 000-1.1l-3.5-3.25a.75.75 0 10-1.02 1.1l2.1 1.95H6.75z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </CustomButtonLink>
+      </div>
+    </div>
+  );
+};
+
 const Content = () => {
   return (
-    <main className="h-auto bg-otherworld-600 lg:ml-[34rem] lg:min-h-screen">
+    <main className="bg-otherworld-600 lg:ml-[34rem] lg:min-h-screen">
       <section className="flex flex-col items-start space-y-5 p-9 text-otherworld-100 lg:p-12">
         <h1 className="text-5xl font-bold text-otherworld-100">Projects</h1>
         <div className="grid w-full grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-          <div className="h-auto w-full space-y-5 rounded-2xl bg-otherworld-500 p-9">
-            <h2 className="font-mono text-4xl font-bold">ttt</h2>
-            <p className="text-xl">
-              tic-tac-toe, React style. followed the tutorial from their website.
-            </p>
-            <CustomButtonLink href="/ttt">
-              <span className="text-xl font-bold text-otherworld-600 hover:text-dash-600">
-                Play
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="h-5 w-5 fill-otherworld-600 hover:fill-dash-600 lg:h-6 lg:w-6"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.75 9.25a.75.75 0 000 1.5h4.59l-2.1 1.95a.75.75 0 001.02 1.1l3.5-3.25a.75.75 0 000-1.1l-3.5-3.25a.75.75 0 10-1.02 1.1l2.1 1.95H6.75z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </CustomButtonLink>
-          </div>
-          <div className="h-auto w-full space-y-5 rounded-2xl bg-otherworld-500 p-9">
-            <h2 className="font-mono text-4xl font-bold">ttt</h2>
-            <p className="text-xl">
-              tic-tac-toe, React style. followed the tutorial from their website.
-            </p>
-            <CustomButtonLink href="/ttt">
-              <span className="text-xl font-bold text-otherworld-600 hover:text-dash-600">
-                Play
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="h-5 w-5 fill-otherworld-600 hover:fill-dash-600 lg:h-6 lg:w-6"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.75 9.25a.75.75 0 000 1.5h4.59l-2.1 1.95a.75.75 0 001.02 1.1l3.5-3.25a.75.75 0 000-1.1l-3.5-3.25a.75.75 0 10-1.02 1.1l2.1 1.95H6.75z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </CustomButtonLink>
-          </div>
+          <InfoCard
+            heading="ttt"
+            imageUrl="imageUrl"
+            description="tic-tac-toe using React state and components. followed the tutorial from their website."
+            href="/ttt"
+            buttonText="Play"
+          />
         </div>
+      </section>
+      <section className="flex flex-col items-start space-y-5 p-9 text-otherworld-100 lg:p-12">
+        <h1 className="text-5xl font-bold text-otherworld-100">About this site</h1>
       </section>
     </main>
   );
