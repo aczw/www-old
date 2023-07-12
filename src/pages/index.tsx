@@ -1,6 +1,6 @@
 import Head from "next/head";
 import CustomButtonLink from "~/components/customButtonLink";
-import ExternalLink from "~/components/externalLink";
+import ExtLink from "~/components/extLink";
 
 const Logo = ({ svgClass, pathClass }: { svgClass: string; pathClass: string }) => {
   return (
@@ -66,12 +66,12 @@ const FlexibleHeader = () => {
       <div className="h-auto bg-otherworld-500 p-9 text-xl text-otherworld-100 lg:p-12 lg:text-2xl">
         <p className="mb-4 lg:mb-6">Stuff that you should totally check out:</p>
         <div className="grid grid-cols-2 lg:grid-cols-1">
-          <ExternalLink href="https://www.linkedin.com/in/aczw/">LinkedIn</ExternalLink>
-          <ExternalLink href="https://github.com/aczw/">GitHub</ExternalLink>
-          <ExternalLink href="https://behance.net/charleszw/">Behance</ExternalLink>
-          <ExternalLink href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/">
+          <ExtLink href="https://www.linkedin.com/in/aczw/">LinkedIn</ExtLink>
+          <ExtLink href="https://github.com/aczw/">GitHub</ExtLink>
+          <ExtLink href="https://behance.net/charleszw/">Behance</ExtLink>
+          <ExtLink href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/">
             Favorite playlist
-          </ExternalLink>
+          </ExtLink>
         </div>
       </div>
     </header>
@@ -133,9 +133,7 @@ const Content = () => {
             description={
               <>
                 Minigame made in Unity, based on the{" "}
-                <ExternalLink href="https://en.wikipedia.org/wiki/Stroop_effect">
-                  Stroop effect.
-                </ExternalLink>{" "}
+                <ExtLink href="https://en.wikipedia.org/wiki/Stroop_effect">Stroop effect.</ExtLink>{" "}
                 Tried to design a smooth and consistent UI/UX as well as clean, colorful visuals.
               </>
             }
@@ -147,10 +145,9 @@ const Content = () => {
             imageUrl="imageUrl"
             description={
               <>
-                A theme for the{" "}
-                <ExternalLink href="https://wiki.archlinux.org/title/SDDM">SDDM</ExternalLink> login
-                manager, written using Qt Quick and QML. Didn{"'"}t like any existing themes, so I
-                made my own.
+                A theme for the <ExtLink href="https://wiki.archlinux.org/title/SDDM">SDDM</ExtLink>{" "}
+                login manager, written using Qt Quick and QML. Didn{"'"}t like any existing themes,
+                so I made my own.
               </>
             }
             href="https://github.com/aczw/sddm-theme-corners"
@@ -169,10 +166,8 @@ const Content = () => {
             description={
               <>
                 Made using React state and components. Followed the{" "}
-                <ExternalLink href="https://react.dev/learn/tutorial-tic-tac-toe">
-                  tutorial
-                </ExternalLink>{" "}
-                from their website. Fun fact: I had no idea what I was doing!
+                <ExtLink href="https://react.dev/learn/tutorial-tic-tac-toe">tutorial</ExtLink> from
+                their website. Fun fact: I had no idea what I was doing!
               </>
             }
             href="/ttt"
@@ -183,14 +178,14 @@ const Content = () => {
       <section className="flex flex-col items-start space-y-5 p-9 text-otherworld-100 lg:p-12">
         <h1 className="text-5xl font-bold text-otherworld-100">About this site</h1>
         <p className="text-xl text-otherworld-100">
-          Created with the <ExternalLink href="https://create.t3.gg">T3 stack</ExternalLink> which
-          uses, among other things, Next.js, TypeScript, and Tailwind CSS. Design and primary colors
-          were prototyped in Figma. Display font is{" "}
-          <ExternalLink href="https://en.wikipedia.org/wiki/Atkinson_Hyperlegible">
+          Created with the <ExtLink href="https://create.t3.gg">T3 stack</ExtLink> which uses, among
+          other things, Next.js, TypeScript, and Tailwind CSS. Design and primary colors were
+          prototyped in Figma. Display font is{" "}
+          <ExtLink href="https://en.wikipedia.org/wiki/Atkinson_Hyperlegible">
             Atkinson Hyperlegible
-          </ExternalLink>{" "}
+          </ExtLink>{" "}
           and monospace font is IBM Plex Mono. Icons provided by{" "}
-          <ExternalLink href="https://heroicons.com/">Heroicons.</ExternalLink>
+          <ExtLink href="https://heroicons.com/">Heroicons.</ExtLink>
         </p>
         <p className="text-xl text-otherworld-100">Last updated on July 12, 2023. 👾</p>
       </section>

@@ -1,21 +1,19 @@
 import Link from "next/link";
 
-const ExternalLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
+const ExtLink = ({ href, children }: { href: string; children: string }) => {
   return (
     <Link
       href={href}
       className="inline-block text-otherworld-200 underline underline-offset-2 transition hover:text-dash-100"
       target="_blank"
     >
-      <span className="flex flex-row items-center gap-1 place-self-start">
+      <span className="flex flex-row items-center gap-0.5">
         {children}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          strokeWidth={3}
-          stroke="currentColor"
-          className="h-3 w-3 lg:h-4 lg:w-4"
+          className="h-[14px] w-[14px] stroke-current stroke-[3px] lg:h-4 lg:w-4 lg:stroke-[2.5px]"
         >
           <path
             strokeLinecap="round"
@@ -28,4 +26,4 @@ const ExternalLink = ({ href, children }: { href: string; children: React.ReactN
   );
 };
 
-export default ExternalLink;
+export default ExtLink;
