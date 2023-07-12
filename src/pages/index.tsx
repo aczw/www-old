@@ -64,7 +64,7 @@ const FlexibleHeader = () => {
         </CustomButtonLink>
       </div>
       <div className="h-auto bg-otherworld-500 p-9 text-xl text-otherworld-100 lg:p-12 lg:text-2xl">
-        <p className="mb-4 lg:mb-6">Other stuff that you should totally check out!!</p>
+        <p className="mb-4 lg:mb-6">Stuff that you should totally check out:</p>
         <div className="grid grid-cols-2 lg:grid-cols-1">
           <ExternalLink href="https://www.linkedin.com/in/aczw/">LinkedIn</ExternalLink>
           <ExternalLink href="https://github.com/aczw/">GitHub</ExternalLink>
@@ -183,13 +183,13 @@ const Content = () => {
       <section className="flex flex-col items-start space-y-5 p-9 text-otherworld-100 lg:p-12">
         <h1 className="text-5xl font-bold text-otherworld-100">About this site</h1>
         <p className="text-xl text-otherworld-100">
-          Created using the <ExternalLink href="https://create.t3.gg">T3 stack</ExternalLink> which
-          includes, among other things, Next.js, TypeScript, and Tailwind CSS.
-        </p>
-        <p className="text-xl text-otherworld-100">
-          Design and primary colors were prototyped in Figma. Icons are from{" "}
+          Created with the <ExternalLink href="https://create.t3.gg">T3 stack</ExternalLink> which
+          uses, among other things, Next.js, TypeScript, and Tailwind CSS. Design and primary colors
+          were prototyped in Figma. Display font is Atkinson Hyperlegible, and monospace font is IBM
+          Plex Mono. Icons provided by{" "}
           <ExternalLink href="https://heroicons.com/">Heroicons.</ExternalLink>
         </p>
+        <p className="text-xl text-otherworld-100">Last updated on July 12, 2023. 👾</p>
       </section>
     </main>
   );
