@@ -1,6 +1,5 @@
 import Head from "next/head";
-import CustomButtonLink from "~/components/customButtonLink";
-import ExtLink from "~/components/extLink";
+import Link from "next/link";
 
 const Logo = ({ svgClass, pathClass }: { svgClass: string; pathClass: string }) => {
   return (
@@ -16,6 +15,42 @@ const Logo = ({ svgClass, pathClass }: { svgClass: string; pathClass: string }) 
         d="M2.48044 2.48044C5.78769 -0.826813 11.1498 -0.826813 14.4571 2.48044L21.6675 9.69092C29.5734 4.10671 39.2224 0.826132 49.6377 0.826132C59.9821 0.826132 69.5706 4.0622 77.4462 9.57721L84.543 2.48044C87.8502 -0.826811 93.2123 -0.826811 96.5196 2.48044C99.8268 5.78769 99.8268 11.1498 96.5196 14.4571L89.4228 21.5538C94.9378 29.4294 98.1739 39.018 98.1739 49.3623C98.1739 59.7776 94.8933 69.4266 89.3091 77.3325L96.5196 84.5429C99.8268 87.8502 99.8268 93.2123 96.5196 96.5196C93.2123 99.8268 87.8502 99.8268 84.5429 96.5196L77.2839 89.2605C69.4391 94.7067 59.9111 97.8985 49.6377 97.8985C39.2933 97.8985 29.7048 94.6624 21.8292 89.1474L14.4571 96.5196C11.1498 99.8268 5.7877 99.8268 2.48044 96.5196C-0.826806 93.2123 -0.826808 87.8502 2.48044 84.5429L9.8526 77.1708C4.33759 69.2952 1.10152 59.7067 1.10152 49.3623C1.10152 39.0889 4.29336 29.5609 9.73947 21.7161L2.48044 14.4571C-0.826813 11.1498 -0.826813 5.78769 2.48044 2.48044ZM34.0957 76.8809C38.6848 79.4783 43.9881 80.961 49.6377 80.961C55.2151 80.961 60.4549 79.516 65.0034 76.98L49.5 61.4766L34.0957 76.8809ZM37.5234 49.5L22.1191 64.9043C19.5217 60.3152 18.039 55.0119 18.039 49.3623C18.039 43.7849 19.484 38.5451 22.02 33.9966L37.5234 49.5ZM61.4766 49.5L77.0563 65.0797C79.7156 60.4505 81.2364 55.084 81.2364 49.3623C81.2364 43.7127 79.7537 38.4094 77.1563 33.8203L61.4766 49.5ZM65.1797 21.8437L49.5 37.5234L33.9203 21.9437C38.5495 19.2844 43.916 17.7636 49.6377 17.7636C55.2873 17.7636 60.5906 19.2463 65.1797 21.8437Z"
       />
     </svg>
+  );
+};
+
+const LinkButton = ({ href, children }: { href: string; children: React.ReactNode }) => {
+  return (
+    <Link
+      href={href}
+      className="group flex w-fit flex-row items-center gap-1 rounded-[30px] bg-otherworld-200 px-4 py-2 transition-all hover:rounded-xl hover:bg-dash-100 lg:gap-2"
+      role="button"
+      target="_blank"
+    >
+      {children}
+    </Link>
+  );
+};
+
+const ExtLink = ({ href, children }: { href: string; children: string }) => {
+  return (
+    <Link
+      href={href}
+      className="inline-flex flex-row items-center gap-0.5 text-otherworld-200 underline underline-offset-2 transition hover:text-dash-100"
+      target="_blank"
+    >
+      {children}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        className="h-[14px] w-[14px] fill-none stroke-current stroke-[3px] lg:h-4 lg:w-4 lg:stroke-[2.5px]"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+        />
+      </svg>
+    </Link>
   );
 };
 
@@ -45,12 +80,11 @@ const FlexibleHeader = () => {
           Hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
           of Pennsylvania. I{"'"}m interested in graphics programming and design {":)"}
         </p>
-        <CustomButtonLink href="/resume_7_10_2023.pdf">
+        <LinkButton href="/resume_7_10_2023.pdf">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
-            fill="currentColor"
-            className="h-5 w-5 fill-otherworld-600 hover:fill-dash-600 lg:h-6 lg:w-6"
+            className="h-5 w-5 fill-otherworld-600 group-hover:fill-dash-600 lg:h-6 lg:w-6"
           >
             <path
               fillRule="evenodd"
@@ -58,10 +92,10 @@ const FlexibleHeader = () => {
               clipRule="evenodd"
             />
           </svg>
-          <span className="text-xl font-bold text-otherworld-600 hover:text-dash-600 lg:text-2xl">
+          <span className="text-xl font-bold text-otherworld-600 group-hover:text-dash-600 lg:text-2xl">
             Resume
           </span>
-        </CustomButtonLink>
+        </LinkButton>
       </div>
       <div className="h-auto bg-otherworld-500 p-9 text-xl text-otherworld-100 lg:p-12 lg:text-2xl">
         <p className="mb-4 lg:mb-6">Stuff that you should totally check out:</p>
@@ -99,14 +133,13 @@ const InfoCard = ({
       </div>
       <div className="px-9 pb-9 pt-5">
         <p className="mb-5 text-xl">{description}</p>
-        <CustomButtonLink href={href}>
+        <LinkButton href={href}>
           <span className="text-xl font-bold text-otherworld-600 hover:text-dash-600">
             {buttonText}
           </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
-            fill="currentColor"
             className="h-5 w-5 fill-otherworld-600 hover:fill-dash-600 lg:h-6 lg:w-6"
           >
             <path
@@ -115,7 +148,7 @@ const InfoCard = ({
               clipRule="evenodd"
             />
           </svg>
-        </CustomButtonLink>
+        </LinkButton>
       </div>
     </div>
   );
