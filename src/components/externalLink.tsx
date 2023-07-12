@@ -1,8 +1,10 @@
+import Link from "next/link";
+
 const ExternalLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
   return (
-    <a
-      className="inline-block text-otherworld-200 underline underline-offset-4 transition hover:text-dash-100"
+    <Link
       href={href}
+      className="inline-block text-otherworld-200 underline underline-offset-4 transition hover:text-dash-100"
       target="_blank"
     >
       <div className="flex flex-row items-center gap-1 place-self-start">
@@ -22,7 +24,7 @@ const ExternalLink = ({ href, children }: { href: string; children: React.ReactN
           />
         </svg>
       </div>
-    </a>
+    </Link>
   );
 };
 
