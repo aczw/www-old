@@ -93,7 +93,7 @@ const InfoCard = ({
 }) => {
   return (
     <div className="flex h-auto w-full flex-col justify-between rounded-2xl bg-otherworld-500">
-      <h2 className="mb-5 pl-9 pt-9 font-mono text-4xl font-bold">{heading}</h2>
+      <h2 className="mb-5 px-9 pt-9 font-mono text-4xl font-bold">{heading}</h2>
       <div className="flex h-24 w-full items-center justify-center bg-otherworld-400">
         <i className="font-mono">{imageUrl} here</i>
       </div>
@@ -161,7 +161,7 @@ const Content = () => {
             imageUrl="imageUrl"
             description="This website counts as a project too, in my eyes! Scroll down for the tools and frameworks used."
             href="/"
-            buttonText="Visit...? How meta"
+            buttonText="How meta"
           />
           <InfoCard
             heading="tic-tac-toe"
