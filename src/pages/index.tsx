@@ -185,8 +185,11 @@ const Content = () => {
         <p className="text-xl text-otherworld-100">
           Created with the <ExternalLink href="https://create.t3.gg">T3 stack</ExternalLink> which
           uses, among other things, Next.js, TypeScript, and Tailwind CSS. Design and primary colors
-          were prototyped in Figma. Display font is Atkinson Hyperlegible, and monospace font is IBM
-          Plex Mono. Icons provided by{" "}
+          were prototyped in Figma. Display font is{" "}
+          <ExternalLink href="https://en.wikipedia.org/wiki/Atkinson_Hyperlegible">
+            Atkinson Hyperlegible
+          </ExternalLink>{" "}
+          and monospace font is IBM Plex Mono. Icons provided by{" "}
           <ExternalLink href="https://heroicons.com/">Heroicons.</ExternalLink>
         </p>
         <p className="text-xl text-otherworld-100">Last updated on July 12, 2023. 👾</p>
