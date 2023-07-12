@@ -42,7 +42,7 @@ const FlexibleHeader = () => {
       </div>
       <div className="p-9 lg:p-12">
         <p className="mb-8 text-xl text-otherworld-100 lg:text-2xl">
-          Hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
+          hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
           of Pennsylvania. I{"'"}m interested in graphics programming and design {":)"}
         </p>
         <CustomButtonLink href="/resume_7_10_2023.pdf">
@@ -64,13 +64,13 @@ const FlexibleHeader = () => {
         </CustomButtonLink>
       </div>
       <div className="h-auto bg-otherworld-500 p-9 text-xl text-otherworld-100 lg:p-12 lg:text-2xl">
-        <p className="mb-4 lg:mb-6">Other stuff you should check out:</p>
+        <p className="mb-4 lg:mb-6">other stuff you should check out!</p>
         <div className="grid grid-cols-2 lg:grid-cols-1">
           <ExternalLink href="https://www.linkedin.com/in/aczw/">LinkedIn</ExternalLink>
           <ExternalLink href="https://github.com/aczw/">GitHub</ExternalLink>
           <ExternalLink href="https://behance.net/charleszw/">Behance</ExternalLink>
           <ExternalLink href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/">
-            Current playlist
+            current playlist
           </ExternalLink>
         </div>
       </div>
@@ -87,12 +87,12 @@ const InfoCard = ({
 }: {
   heading: string;
   imageUrl: string;
-  description: string;
+  description: React.ReactNode;
   href: string;
   buttonText: string;
 }) => {
   return (
-    <div className="h-auto w-full rounded-2xl bg-otherworld-500">
+    <div className="flex h-auto w-full flex-col justify-between rounded-2xl bg-otherworld-500">
       <h2 className="mb-5 pl-9 pt-9 font-mono text-4xl font-bold">{heading}</h2>
       <div className="flex h-24 w-full items-center justify-center bg-otherworld-400">
         <i className="font-mono">{imageUrl} here</i>
@@ -128,11 +128,32 @@ const Content = () => {
         <h1 className="text-5xl font-bold text-otherworld-100">Projects</h1>
         <div className="grid w-full grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
           <InfoCard
+            heading="RCW"
+            imageUrl="imageUrl"
+            description="minigame made in Unity, based on the Stroop effect. aimed for a smooth UI/UX and clean, colorful visuals."
+            href="https://aczw.itch.io/rcw"
+            buttonText="Play in browser on itch.io"
+          />
+          <InfoCard
+            heading="sddm-theme-corners"
+            imageUrl="imageUrl"
+            description="a theme for the SDDM login manager, written using Qt Quick and QML. didn't like the themes out there so made my own."
+            href="https://github.com/aczw/sddm-theme-corners"
+            buttonText="Source on GitHub"
+          />
+          <InfoCard
+            heading="aczw.dev"
+            imageUrl="imageUrl"
+            description="this website counts as a project too, I guess. scroll down for a list of the tools and frameworks used."
+            href="/"
+            buttonText="Visit...?"
+          />
+          <InfoCard
             heading="ttt"
             imageUrl="imageUrl"
             description="tic-tac-toe using React state and components. followed the tutorial from their website."
             href="/ttt"
-            buttonText="Play"
+            buttonText="Play here"
           />
         </div>
       </section>
