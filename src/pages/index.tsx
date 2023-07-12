@@ -29,10 +29,10 @@ const FlexibleHeader = () => {
         <button
           className="group z-10"
           type="button"
-          onClick={() => alert("hi! WIP")}
+          onClick={() => alert("hello...")}
         >
           <Logo
-            pathClass="fill-otherworld-200 transition group-hover:fill-dash-200"
+            pathClass="fill-otherworld-200 transition group-hover:fill-dash-100"
             svgClass="w-[65px] h-[65px] lg:w-[90px] lg:h-[90px]"
           />
         </button>
@@ -42,7 +42,7 @@ const FlexibleHeader = () => {
       </div>
       <div className="p-9 lg:p-12">
         <p className="mb-8 text-xl text-otherworld-100 lg:text-2xl">
-          hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
+          Hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
           of Pennsylvania. I{"'"}m interested in graphics programming and design {":)"}
         </p>
         <CustomButtonLink href="/resume_7_10_2023.pdf">
@@ -64,13 +64,13 @@ const FlexibleHeader = () => {
         </CustomButtonLink>
       </div>
       <div className="h-auto bg-otherworld-500 p-9 text-xl text-otherworld-100 lg:p-12 lg:text-2xl">
-        <p className="mb-4 lg:mb-6">other stuff you should check out!</p>
+        <p className="mb-4 lg:mb-6">Other stuff that you should totally check out!!</p>
         <div className="grid grid-cols-2 lg:grid-cols-1">
           <ExternalLink href="https://www.linkedin.com/in/aczw/">LinkedIn</ExternalLink>
           <ExternalLink href="https://github.com/aczw/">GitHub</ExternalLink>
           <ExternalLink href="https://behance.net/charleszw/">Behance</ExternalLink>
           <ExternalLink href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/">
-            current playlist
+            Favorite playlist
           </ExternalLink>
         </div>
       </div>
@@ -130,28 +130,51 @@ const Content = () => {
           <InfoCard
             heading="RCW"
             imageUrl="imageUrl"
-            description="minigame made in Unity, based on the Stroop effect. aimed for a smooth UI/UX and clean, colorful visuals."
+            description={
+              <>
+                Minigame made in Unity, based on the{" "}
+                <ExternalLink href="https://en.wikipedia.org/wiki/Stroop_effect">
+                  Stroop effect.
+                </ExternalLink>{" "}
+                Tried to design a smooth and consistent UI/UX as well as clean, colorful visuals.
+              </>
+            }
             href="https://aczw.itch.io/rcw"
             buttonText="Play in browser on itch.io"
           />
           <InfoCard
             heading="sddm-theme-corners"
             imageUrl="imageUrl"
-            description="a theme for the SDDM login manager, written using Qt Quick and QML. didn't like the themes out there so made my own."
+            description={
+              <>
+                A theme for the{" "}
+                <ExternalLink href="https://wiki.archlinux.org/title/SDDM">SDDM</ExternalLink> login
+                manager, written using Qt Quick and QML. Didn{"'"}t like any existing themes, so I
+                made my own.
+              </>
+            }
             href="https://github.com/aczw/sddm-theme-corners"
             buttonText="Source on GitHub"
           />
           <InfoCard
             heading="aczw.dev"
             imageUrl="imageUrl"
-            description="this website counts as a project too, I guess. scroll down for a list of the tools and frameworks used."
+            description="This website counts as a project too, in my eyes! Scroll down for the tools and frameworks used."
             href="/"
-            buttonText="Visit...?"
+            buttonText="Visit...? How meta"
           />
           <InfoCard
-            heading="ttt"
+            heading="tic-tac-toe"
             imageUrl="imageUrl"
-            description="tic-tac-toe using React state and components. followed the tutorial from their website."
+            description={
+              <>
+                Made using React state and components. Followed the{" "}
+                <ExternalLink href="https://react.dev/learn/tutorial-tic-tac-toe">
+                  tutorial
+                </ExternalLink>{" "}
+                from their website. Fun fact: I had no idea what I was doing!
+              </>
+            }
             href="/ttt"
             buttonText="Play here"
           />
@@ -159,6 +182,14 @@ const Content = () => {
       </section>
       <section className="flex flex-col items-start space-y-5 p-9 text-otherworld-100 lg:p-12">
         <h1 className="text-5xl font-bold text-otherworld-100">About this site</h1>
+        <p className="text-xl text-otherworld-100">
+          Created using the <ExternalLink href="https://create.t3.gg">T3 stack</ExternalLink> which
+          includes, among other things, Next.js, TypeScript, and Tailwind CSS.
+        </p>
+        <p className="text-xl text-otherworld-100">
+          Design and primary colors were prototyped in Figma. Icons are from{" "}
+          <ExternalLink href="https://heroicons.com/">Heroicons.</ExternalLink>
+        </p>
       </section>
     </main>
   );
