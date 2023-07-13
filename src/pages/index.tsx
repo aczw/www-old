@@ -22,7 +22,7 @@ const LinkButton = ({ href, children }: { href: string; children: React.ReactNod
   return (
     <Link
       href={href}
-      className="group flex w-fit flex-row items-center gap-1 rounded-[30px] bg-otherworld-200 px-4 py-2 transition-all hover:rounded-xl hover:bg-dash-100 lg:gap-2"
+      className="group flex w-fit flex-row items-center gap-1 rounded-[30px] bg-otherworld-200 px-4 py-2 transition-all hover:rounded-lg hover:bg-dash-100 lg:gap-2"
       role="button"
       target="_blank"
     >
@@ -31,25 +31,30 @@ const LinkButton = ({ href, children }: { href: string; children: React.ReactNod
   );
 };
 
-const ExtLink = ({ href, children }: { href: string; children: string }) => {
+// HACK: always insert last word into the span so that arrow will never break on its own.
+// this means if we want a one word link, we leave `children` blank and use only `last`.
+const ExtLink = ({ href, last, children }: { href: string; last: string; children?: string }) => {
   return (
     <Link
       href={href}
-      className="inline-flex flex-row items-center gap-0.5 text-otherworld-200 underline underline-offset-2 transition hover:text-dash-100"
+      className="h-min w-fit text-otherworld-200 underline underline-offset-2 transition hover:text-dash-100"
       target="_blank"
     >
-      {children}
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        className="h-[14px] w-[14px] fill-none stroke-current stroke-[3px] lg:h-4 lg:w-4 lg:stroke-[2.5px]"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
-        />
-      </svg>
+      {children ? `${children} ` : ""}
+      <span className="inline-flex items-center gap-1 underline underline-offset-2">
+        {last}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          className="h-[14px] w-[14px] fill-none stroke-current stroke-[3px] lg:h-4 lg:w-4 lg:stroke-[2.5px]"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+          />
+        </svg>
+      </span>
     </Link>
   );
 };
@@ -100,11 +105,23 @@ const FlexibleHeader = () => {
       <div className="h-auto bg-otherworld-500 p-9 text-xl text-otherworld-100 lg:p-12 lg:text-2xl">
         <p className="mb-4 lg:mb-6">Stuff that you should totally check out:</p>
         <div className="grid grid-cols-2 lg:grid-cols-1">
-          <ExtLink href="https://www.linkedin.com/in/aczw/">LinkedIn</ExtLink>
-          <ExtLink href="https://github.com/aczw/">GitHub</ExtLink>
-          <ExtLink href="https://behance.net/charleszw/">Behance</ExtLink>
-          <ExtLink href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/">
-            Favorite playlist
+          <ExtLink
+            href="https://www.linkedin.com/in/aczw/"
+            last="LinkedIn"
+          />
+          <ExtLink
+            href="https://github.com/aczw/"
+            last="GitHub"
+          />
+          <ExtLink
+            href="https://behance.net/charleszw/"
+            last="Behance"
+          />
+          <ExtLink
+            href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/"
+            last="playlist"
+          >
+            Current Spotify
           </ExtLink>
         </div>
       </div>
@@ -126,7 +143,7 @@ const InfoCard = ({
   buttonText: string;
 }) => {
   return (
-    <div className="flex h-auto w-full flex-col justify-between rounded-2xl bg-otherworld-500">
+    <div className="flex h-fit w-full flex-col rounded-2xl bg-otherworld-500">
       <h2 className="mb-5 px-9 pt-9 font-mono text-4xl font-bold">{heading}</h2>
       <div className="flex h-24 w-full items-center justify-center bg-otherworld-400">
         <i className="font-mono">{imageUrl} here</i>
@@ -134,13 +151,13 @@ const InfoCard = ({
       <div className="px-9 pb-9 pt-5">
         <p className="mb-5 text-xl">{description}</p>
         <LinkButton href={href}>
-          <span className="text-xl font-bold text-otherworld-600 hover:text-dash-600">
+          <span className="text-xl font-bold text-otherworld-600 group-hover:text-dash-600">
             {buttonText}
           </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
-            className="h-5 w-5 fill-otherworld-600 hover:fill-dash-600 lg:h-6 lg:w-6"
+            className="h-5 w-5 fill-otherworld-600 group-hover:fill-dash-600 lg:h-6 lg:w-6"
           >
             <path
               fillRule="evenodd"
@@ -156,7 +173,7 @@ const InfoCard = ({
 
 const Content = () => {
   return (
-    <main className="bg-otherworld-600 lg:ml-[34rem] lg:min-h-screen">
+    <main className="bg-otherworld-600 lg:ml-[34rem]">
       <section className="flex flex-col items-start space-y-5 p-9 text-otherworld-100 lg:p-12">
         <h1 className="text-5xl font-bold text-otherworld-100">Projects</h1>
         <div className="grid w-full grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
@@ -166,7 +183,12 @@ const Content = () => {
             description={
               <>
                 Minigame made in Unity, based on the{" "}
-                <ExtLink href="https://en.wikipedia.org/wiki/Stroop_effect">Stroop effect.</ExtLink>{" "}
+                <ExtLink
+                  href="https://en.wikipedia.org/wiki/Stroop_effect"
+                  last="effect."
+                >
+                  Stroop
+                </ExtLink>{" "}
                 Tried to design a smooth and consistent UI/UX as well as clean, colorful visuals.
               </>
             }
@@ -178,7 +200,11 @@ const Content = () => {
             imageUrl="imageUrl"
             description={
               <>
-                A theme for the <ExtLink href="https://wiki.archlinux.org/title/SDDM">SDDM</ExtLink>{" "}
+                A theme for the{" "}
+                <ExtLink
+                  href="https://wiki.archlinux.org/title/SDDM"
+                  last="SDDM"
+                />{" "}
                 login manager, written using Qt Quick and QML. Didn{"'"}t like any existing themes,
                 so I made my own.
               </>
@@ -189,8 +215,8 @@ const Content = () => {
           <InfoCard
             heading="aczw.dev"
             imageUrl="imageUrl"
-            description="This website counts as a project too, in my eyes! Scroll down for the tools and frameworks used."
-            href="/"
+            description="This website counts as a project too, in my eyes! Scroll down for the tools, frameworks, and other stuff that I used."
+            href="/#"
             buttonText="How meta"
           />
           <InfoCard
@@ -199,8 +225,11 @@ const Content = () => {
             description={
               <>
                 Made using React state and components. Followed the{" "}
-                <ExtLink href="https://react.dev/learn/tutorial-tic-tac-toe">tutorial</ExtLink> from
-                their website. Fun fact: I had no idea what I was doing!
+                <ExtLink
+                  href="https://react.dev/learn/tutorial-tic-tac-toe"
+                  last="tutorial"
+                />{" "}
+                from their website. Fun fact: I had no idea what I was doing!
               </>
             }
             href="/ttt"
@@ -208,19 +237,33 @@ const Content = () => {
           />
         </div>
       </section>
-      <section className="flex flex-col items-start space-y-5 p-9 text-otherworld-100 lg:p-12">
+      <section className="flex flex-col space-y-5 p-9 text-otherworld-100 lg:p-12">
         <h1 className="text-5xl font-bold text-otherworld-100">About this site</h1>
         <p className="text-xl text-otherworld-100">
-          Created with the <ExtLink href="https://create.t3.gg">T3 stack</ExtLink> which uses, among
-          other things, Next.js, TypeScript, and Tailwind CSS. Design and primary colors were
-          prototyped in Figma. Display font is{" "}
-          <ExtLink href="https://en.wikipedia.org/wiki/Atkinson_Hyperlegible">
-            Atkinson Hyperlegible
+          Created with the{" "}
+          <ExtLink
+            href="https://create.t3.gg"
+            last="stack"
+          >
+            T3
+          </ExtLink>{" "}
+          which uses, among other things, Next.js, TypeScript, and Tailwind CSS. Design and primary
+          colors were prototyped in Figma. Display font used is{" "}
+          <ExtLink
+            href="https://en.wikipedia.org/wiki/Atkinson_Hyperlegible"
+            last="Hyperlegible"
+          >
+            Atkinson
           </ExtLink>{" "}
           and monospace font is IBM Plex Mono. Icons provided by{" "}
-          <ExtLink href="https://heroicons.com/">Heroicons.</ExtLink>
+          <ExtLink
+            href="https://heroicons.com"
+            last="Heroicons."
+          />
         </p>
-        <p className="text-xl text-otherworld-100">Last updated on July 12, 2023. 👾</p>
+        <p className="text-xl text-otherworld-100">
+          <i className="font-mono text-lg">Last updated on July 12, 2023.</i> 👾💜
+        </p>
       </section>
     </main>
   );
