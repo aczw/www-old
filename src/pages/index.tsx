@@ -18,13 +18,21 @@ const Logo = ({ svgClass, pathClass }: { svgClass: string; pathClass: string }) 
   );
 };
 
-const LinkButton = ({ href, children }: { href: string; children: React.ReactNode }) => {
+const LinkButton = ({
+  href,
+  newTab = true,
+  children,
+}: {
+  href: string;
+  newTab?: boolean;
+  children: React.ReactNode;
+}) => {
   return (
     <Link
       href={href}
       className="group flex w-fit flex-row items-center gap-1 rounded-[30px] bg-otherworld-200 px-4 py-2 transition-all hover:rounded-lg hover:bg-dash-100 lg:gap-2"
       role="button"
-      target="_blank"
+      target={newTab ? "_blank" : "_self"}
     >
       {children}
     </Link>
@@ -85,7 +93,7 @@ const FlexibleHeader = () => {
           Hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
           of Pennsylvania. I{"'"}m interested in graphics programming and design {":)"}
         </p>
-        <LinkButton href="/resume_7_10_2023.pdf">
+        <LinkButton href="/resume.pdf">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -103,7 +111,7 @@ const FlexibleHeader = () => {
         </LinkButton>
       </div>
       <div className="h-auto bg-otherworld-500 p-9 text-xl text-otherworld-100 lg:p-12 lg:text-2xl">
-        <p className="mb-4 lg:mb-6">Stuff that you should totally check out:</p>
+        <p className="mb-4 lg:mb-6">Other stuff that you should also totally check out:</p>
         <div className="grid grid-cols-2 lg:grid-cols-1">
           <ExtLink
             href="https://www.linkedin.com/in/aczw/"
@@ -215,7 +223,7 @@ const Content = () => {
           <InfoCard
             heading="aczw.dev"
             imageUrl="imageUrl"
-            description="This website counts as a project too, in my eyes! Scroll down for the tools, frameworks, and other stuff that I used."
+            description="This site counts as a project too, in my eyes! Scroll down for the tools, frameworks, and other stuff that I used."
             href="/#"
             buttonText="How meta"
           />
@@ -247,8 +255,11 @@ const Content = () => {
           >
             T3
           </ExtLink>{" "}
-          which uses, among other things, Next.js, TypeScript, and Tailwind CSS. Design and primary
-          colors were prototyped in Figma. Display font used is{" "}
+          which uses (amongst other things) Next.js, TypeScript, and Tailwind CSS.
+        </p>
+        <p className="text-xl text-otherworld-100">
+          {" "}
+          Design and primary colors were prototyped in Figma. Display font used is{" "}
           <ExtLink
             href="https://en.wikipedia.org/wiki/Atkinson_Hyperlegible"
             last="Hyperlegible"
@@ -261,9 +272,29 @@ const Content = () => {
             last="Heroicons."
           />
         </p>
-        <p className="text-xl text-otherworld-100">
-          <i className="font-mono text-lg">Last updated on July 12, 2023.</i> 👾💜
+        <p className="pb-2 text-xl text-otherworld-100">
+          <i className="font-mono text-lg">Last updated on July 13, 2023.</i>{" "}
+          <span className="whitespace-nowrap">👾💜</span>
         </p>
+        <LinkButton
+          href="/#"
+          newTab={false}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            className="h-5 w-5 fill-otherworld-600 group-hover:fill-dash-600 lg:h-6 lg:w-6"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm-.75-4.75a.75.75 0 001.5 0V8.66l1.95 2.1a.75.75 0 101.1-1.02l-3.25-3.5a.75.75 0 00-1.1 0L6.2 9.74a.75.75 0 101.1 1.02l1.95-2.1v4.59z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <span className="text-xl font-bold text-otherworld-600 group-hover:text-dash-600">
+            Back to top
+          </span>
+        </LinkButton>
       </section>
     </main>
   );
@@ -273,7 +304,7 @@ const App = () => {
   return (
     <>
       <Head>
-        <title>Charles Wang</title>
+        <title>aczw · Home</title>
         <link
           rel="icon"
           sizes="any"
