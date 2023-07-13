@@ -30,7 +30,7 @@ const LinkButton = ({
   return (
     <Link
       href={href}
-      className="group flex w-fit flex-row items-center gap-1 rounded-[30px] bg-otherworld-200 px-4 py-2 transition-all hover:rounded-lg hover:bg-dash-100 lg:gap-2"
+      className="group flex w-fit flex-row items-center gap-1 rounded-3xl bg-otherworld-200 px-3 py-1 transition-all hover:rounded-lg hover:bg-dash-100 lg:px-4 lg:py-2"
       role="button"
       target={newTab ? "_blank" : "_self"}
     >
@@ -49,12 +49,12 @@ const ExtLink = ({ href, last, children }: { href: string; last: string; childre
       target="_blank"
     >
       {children ? `${children} ` : ""}
-      <span className="inline-flex items-center gap-1 underline underline-offset-2">
+      <span className="inline-flex items-center gap-0.5 underline underline-offset-2">
         {last}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          className="h-[14px] w-[14px] fill-none stroke-current stroke-[3px] lg:h-4 lg:w-4 lg:stroke-[2.5px]"
+          className="h-3 w-3 fill-none stroke-current stroke-[3px]"
         >
           <path
             strokeLinecap="round"
@@ -70,7 +70,7 @@ const ExtLink = ({ href, last, children }: { href: string; last: string; childre
 const FlexibleHeader = () => {
   return (
     <header
-      className="flex h-auto w-full flex-col justify-between bg-otherworld-400 lg:fixed lg:h-full lg:w-[34rem] lg:overflow-y-auto"
+      className="flex h-auto w-full flex-col justify-between bg-otherworld-400 lg:fixed lg:h-full lg:w-[30rem] lg:overflow-y-auto"
       role="banner"
     >
       <div className="-mb-3 flex flex-col items-start pl-9 pt-9 lg:-mb-7 lg:pl-12 lg:pt-12">
@@ -84,20 +84,20 @@ const FlexibleHeader = () => {
             svgClass="w-[65px] h-[65px] lg:w-[90px] lg:h-[90px]"
           />
         </button>
-        <div className="z-0 -mt-2 select-none text-7xl font-bold text-otherworld-200 lg:-mt-4 lg:text-[110px]">
+        <div className="z-0 -mt-3 select-none text-[84px] font-bold leading-none text-otherworld-200 lg:-mt-4 lg:text-[110px]">
           aczw
         </div>
       </div>
       <div className="p-9 lg:p-12">
-        <p className="mb-8 text-xl text-otherworld-100 lg:text-2xl">
-          Hi, my name is <b>Charles Wang.</b> I{"'"}m studying computer graphics at the University
+        <p className="mb-6 text-lg leading-snug text-otherworld-100 lg:text-xl">
+          Hi, my name is <b>Charles Wang.</b> Currently studying computer graphics at the University
           of Pennsylvania. I{"'"}m interested in graphics programming and design {":)"}
         </p>
         <LinkButton href="/resume.pdf">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
-            className="h-5 w-5 fill-otherworld-600 group-hover:fill-dash-600 lg:h-6 lg:w-6"
+            className="h-4 w-4 fill-otherworld-600 group-hover:fill-dash-600 lg:h-5 lg:w-5"
           >
             <path
               fillRule="evenodd"
@@ -105,13 +105,13 @@ const FlexibleHeader = () => {
               clipRule="evenodd"
             />
           </svg>
-          <span className="text-xl font-bold text-otherworld-600 group-hover:text-dash-600 lg:text-2xl">
+          <span className="text-lg font-bold text-otherworld-600 group-hover:text-dash-600 lg:text-xl">
             Resume
           </span>
         </LinkButton>
       </div>
-      <div className="h-auto bg-otherworld-500 p-9 text-xl text-otherworld-100 lg:p-12 lg:text-2xl">
-        <p className="mb-4 lg:mb-6">Other stuff that you should also totally check out:</p>
+      <div className="h-auto bg-otherworld-500 p-9 text-lg leading-snug text-otherworld-100 lg:p-12 lg:text-xl">
+        <p className="mb-4 lg:mb-6">Other stuff you should totally check out:</p>
         <div className="grid grid-cols-2 lg:grid-cols-1">
           <ExtLink
             href="https://www.linkedin.com/in/aczw/"
@@ -152,14 +152,14 @@ const InfoCard = ({
 }) => {
   return (
     <div className="flex h-fit w-full flex-col rounded-2xl bg-otherworld-500">
-      <h2 className="mb-5 px-9 pt-9 font-mono text-4xl font-bold">{heading}</h2>
-      <div className="flex h-24 w-full items-center justify-center bg-otherworld-400">
-        <i className="font-mono">{imageUrl} here</i>
+      <h2 className="p-7 font-mono text-4xl font-bold leading-none">{heading}</h2>
+      <div className="flex h-64 w-full items-center justify-center bg-otherworld-400">
+        <i className="font-mono text-xl">{imageUrl} here...</i>
       </div>
-      <div className="px-9 pb-9 pt-5">
-        <p className="mb-5 text-xl">{description}</p>
+      <div className="p-7">
+        <p className="mb-6 text-lg leading-snug lg:text-xl">{description}</p>
         <LinkButton href={href}>
-          <span className="text-xl font-bold text-otherworld-600 group-hover:text-dash-600">
+          <span className="text-lg font-bold text-otherworld-600 group-hover:text-dash-600 lg:text-xl">
             {buttonText}
           </span>
           <svg
@@ -181,10 +181,10 @@ const InfoCard = ({
 
 const Content = () => {
   return (
-    <main className="bg-otherworld-600 lg:ml-[34rem]">
-      <section className="flex flex-col items-start space-y-5 p-9 text-otherworld-100 lg:p-12">
-        <h1 className="text-5xl font-bold text-otherworld-100">Projects</h1>
-        <div className="grid w-full grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+    <main className="bg-otherworld-600 lg:ml-[30rem]">
+      <section className="flex flex-col space-y-6 px-9 pt-9 text-otherworld-100 lg:space-y-8 lg:px-12 lg:pt-12">
+        <h1 className="text-5xl font-bold text-otherworld-100 lg:text-6xl">Projects</h1>
+        <div className="grid w-full grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-1 lg:gap-12 xl:grid-cols-2">
           <InfoCard
             heading="RCW"
             imageUrl="imageUrl"
@@ -246,8 +246,8 @@ const Content = () => {
         </div>
       </section>
       <section className="flex flex-col space-y-5 p-9 text-otherworld-100 lg:p-12">
-        <h1 className="text-5xl font-bold text-otherworld-100">About this site</h1>
-        <p className="text-xl text-otherworld-100">
+        <h1 className="text-5xl font-bold text-otherworld-100 lg:text-6xl">About this site</h1>
+        <p className="text-lg leading-snug text-otherworld-100 lg:text-xl">
           Created with the{" "}
           <ExtLink
             href="https://create.t3.gg"
@@ -257,7 +257,7 @@ const Content = () => {
           </ExtLink>{" "}
           which uses (amongst other things) Next.js, TypeScript, and Tailwind CSS.
         </p>
-        <p className="text-xl text-otherworld-100">
+        <p className="text-lg leading-snug text-otherworld-100 lg:text-xl">
           {" "}
           Design and primary colors were prototyped in Figma. Display font used is{" "}
           <ExtLink
@@ -272,8 +272,8 @@ const Content = () => {
             last="Heroicons."
           />
         </p>
-        <p className="pb-2 text-xl text-otherworld-100">
-          <i className="font-mono text-lg">Last updated on July 13, 2023.</i>{" "}
+        <p className="text-md pb-2 text-otherworld-100 lg:text-lg">
+          <i className="font-mono">Last updated on July 13, 2023.</i>{" "}
           <span className="whitespace-nowrap">👾💜</span>
         </p>
         <LinkButton
@@ -291,7 +291,7 @@ const Content = () => {
               clipRule="evenodd"
             />
           </svg>
-          <span className="text-xl font-bold text-otherworld-600 group-hover:text-dash-600">
+          <span className="text-lg font-bold text-otherworld-600 group-hover:text-dash-600 lg:text-xl">
             Back to top
           </span>
         </LinkButton>
