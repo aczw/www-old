@@ -110,28 +110,25 @@ const FlexibleHeader = () => {
           </span>
         </LinkButton>
       </div>
-      <div className="h-auto bg-otherworld-500 p-9 text-lg leading-snug text-otherworld-100 lg:p-12 lg:text-xl">
-        <p className="mb-4 lg:mb-6">Other stuff you should totally check out:</p>
-        <div className="grid grid-cols-2 lg:grid-cols-1">
-          <ExtLink
-            href="https://www.linkedin.com/in/aczw/"
-            last="LinkedIn"
-          />
-          <ExtLink
-            href="https://github.com/aczw/"
-            last="GitHub"
-          />
-          <ExtLink
-            href="https://behance.net/charleszw/"
-            last="Behance"
-          />
-          <ExtLink
-            href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/"
-            last="playlist"
-          >
-            Current Spotify
-          </ExtLink>
-        </div>
+      <div className="grid h-auto grid-cols-2 bg-otherworld-500 p-9 leading-snug text-otherworld-100 lg:grid-cols-1 lg:p-12 lg:text-xl">
+        <ExtLink
+          href="https://www.linkedin.com/in/aczw/"
+          last="LinkedIn"
+        />
+        <ExtLink
+          href="https://github.com/aczw/"
+          last="GitHub"
+        />
+        <ExtLink
+          href="https://behance.net/charleszw/"
+          last="Behance"
+        />
+        <ExtLink
+          href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/"
+          last="playlist"
+        >
+          Current Spotify
+        </ExtLink>
       </div>
     </header>
   );
@@ -224,7 +221,7 @@ const Content = () => {
             heading="aczw.dev"
             imageUrl="imageUrl"
             description="This site counts as a project too, in my eyes! Scroll down for the tools, frameworks, and other stuff that I used."
-            href="/#"
+            href="/"
             buttonText="How meta"
           />
           <InfoCard
@@ -232,7 +229,7 @@ const Content = () => {
             imageUrl="imageUrl"
             description={
               <>
-                Made using React state and components. Followed the{" "}
+                Little project to help me learn React. Followed the{" "}
                 <ExtLink
                   href="https://react.dev/learn/tutorial-tic-tac-toe"
                   last="tutorial"
@@ -277,7 +274,7 @@ const Content = () => {
           <span className="whitespace-nowrap">👾💜</span>
         </p>
         <LinkButton
-          href="/#"
+          href="/"
           newTab={false}
         >
           <svg
@@ -304,7 +301,7 @@ const App = () => {
   return (
     <>
       <Head>
-        <title>aczw · Home</title>
+        <title>aczw • Home</title>
         <link
           rel="icon"
           sizes="any"
