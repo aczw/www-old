@@ -30,7 +30,7 @@ const LinkButton = ({
   return (
     <Link
       href={href}
-      className="group flex w-fit flex-row items-center gap-1 rounded-3xl bg-otherworld-200 px-3 py-1 transition-all hover:rounded-lg hover:bg-dash-100 lg:px-4 lg:py-2"
+      className="group flex w-fit flex-row items-center gap-1.5 rounded-3xl bg-otherworld-200 px-3 py-1 transition-all hover:rounded-lg hover:bg-dash-100 lg:px-4 lg:py-2"
       role="button"
       target={newTab ? "_blank" : "_self"}
     >
@@ -91,7 +91,7 @@ const FlexibleHeader = () => {
       <div className="p-9 lg:p-12">
         <p className="mb-6 text-lg leading-snug text-otherworld-100 lg:text-xl">
           Hi, my name is <b>Charles Wang.</b> Currently studying computer graphics at the University
-          of Pennsylvania. I{"'"}m interested in graphics programming and design {":)"}
+          of Pennsylvania. I&apos;m interested in graphics programming and design.
         </p>
         <LinkButton href="/resume.pdf">
           <svg
@@ -172,24 +172,24 @@ const FlexibleHeader = () => {
 const InfoCard = ({
   heading,
   imageUrl,
-  description,
   href,
   buttonText,
+  children,
 }: {
   heading: string;
   imageUrl: string;
-  description: React.ReactNode;
   href: string;
-  buttonText: string;
+  buttonText: React.ReactNode;
+  children: React.ReactNode;
 }) => {
   return (
     <div className="flex h-fit w-full flex-col rounded-2xl bg-otherworld-500">
-      <h2 className="p-7 font-mono text-4xl font-bold leading-none">{heading}</h2>
+      <h2 className="p-7 font-mono text-3xl font-bold leading-none lg:text-4xl">{heading}</h2>
       <div className="flex h-64 w-full items-center justify-center bg-otherworld-400">
         <i className="font-mono text-xl">{imageUrl} here...</i>
       </div>
       <div className="p-7">
-        <p className="mb-6 text-lg leading-snug lg:text-xl">{description}</p>
+        <p className="mb-6 text-lg leading-snug lg:text-xl">{children ?? ""}</p>
         <LinkButton href={href}>
           <span className="text-lg font-bold text-otherworld-600 group-hover:text-dash-600 lg:text-xl">
             {buttonText}
@@ -220,92 +220,112 @@ const Content = () => {
           <InfoCard
             heading="RCW"
             imageUrl="imageUrl"
-            description={
-              <>
-                Minigame made in Unity, based on the{" "}
-                <ExtLink
-                  href="https://en.wikipedia.org/wiki/Stroop_effect"
-                  last="effect."
-                >
-                  Stroop
-                </ExtLink>{" "}
-                Tried to design a smooth and consistent UI/UX as well as clean, colorful visuals.
-              </>
-            }
             href="https://aczw.itch.io/rcw"
-            buttonText="Play in browser on itch.io"
-          />
+            buttonText="Play in your browser on itch.io"
+          >
+            Unity minigame. Endlessly match colors and text together, but be quick about it.
+            Gameplay is{" "}
+            <ExtLink
+              href="https://en.wikipedia.org/wiki/Stroop_effect"
+              last="simple"
+            >
+              really
+            </ExtLink>{" "}
+            as I was focusing more on UI/UX. First foray into gamedev.
+          </InfoCard>
           <InfoCard
             heading="sddm-theme-corners"
             imageUrl="imageUrl"
-            description={
-              <>
-                A theme for the{" "}
-                <ExtLink
-                  href="https://wiki.archlinux.org/title/SDDM"
-                  last="SDDM"
-                />{" "}
-                login manager, written using Qt Quick and QML. Didn{"'"}t like any existing themes,
-                so I made my own.
-              </>
-            }
             href="https://github.com/aczw/sddm-theme-corners"
             buttonText="Source on GitHub"
-          />
+          >
+            An <em>extremely</em> customizable theme for{" "}
+            <ExtLink
+              href="https://wiki.archlinux.org/title/SDDM"
+              last="SDDM,"
+            />{" "}
+            a login manager for Linux. Didn&apos;t like any existing themes, so I made my own. Clean
+            and simple, with a focus on the wallpaper.
+          </InfoCard>
           <InfoCard
             heading="aczw.dev"
             imageUrl="imageUrl"
-            description="This site counts as a project too, in my eyes! Scroll down for the tools, frameworks, and other stuff that I used."
             href="/"
             buttonText="How meta"
-          />
+          >
+            This is included here because I spent{" "}
+            <ExtLink
+              href="https://github.com/aczw/personal-website/commits/main"
+              last="long"
+            >
+              way too
+            </ExtLink>{" "}
+            on this site for it to not count as a project. Scroll down for the list of stuff I used
+            to make it.
+          </InfoCard>
           <InfoCard
             heading="tic-tac-toe"
             imageUrl="imageUrl"
-            description={
+            href="/ttt"
+            buttonText={
               <>
-                Little project to help me learn React. Followed the{" "}
-                <ExtLink
-                  href="https://react.dev/learn/tutorial-tic-tac-toe"
-                  last="tutorial"
-                />{" "}
-                from their website. Fun fact: I had no idea what I was doing!
+                Hosted at <span className="font-mono">/ttt</span>
               </>
             }
-            href="/ttt"
-            buttonText="Play here"
-          />
+          >
+            Small little game that finally made React click for me. Followed the{" "}
+            <ExtLink
+              href="https://react.dev/learn/tutorial-tic-tac-toe"
+              last="tutorial"
+            />{" "}
+            from their site. Took what I learned to build <em>this</em> site.
+          </InfoCard>
         </div>
       </section>
-      <section className="flex flex-col space-y-5 p-9 text-otherworld-100 lg:p-12">
+      <section className="flex flex-col space-y-5 p-9 text-lg leading-snug text-otherworld-100 lg:p-12 lg:text-xl">
         <h1 className="text-5xl font-bold text-otherworld-100 lg:text-6xl">About this site</h1>
-        <p className="text-lg leading-snug text-otherworld-100 lg:text-xl">
-          Created with the{" "}
+        <p>
+          Source code is{" "}
+          <ExtLink
+            href="https://github.com/aczw/personal-website"
+            last="GitHub."
+          >
+            available on
+          </ExtLink>
+        </p>
+        <p>
+          Made with{" "}
           <ExtLink
             href="https://create.t3.gg"
-            last="stack"
-          >
-            T3
-          </ExtLink>{" "}
-          which uses (amongst other things) Next.js, TypeScript, and Tailwind CSS.
+            last="create-t3-app"
+          />{" "}
+          which uses Next.js and provides TypeScript and Tailwind CSS out of the box. I didn&apos;t
+          add any of the backend stuff though. Basically, it&apos;s overkill for my use case.
         </p>
-        <p className="text-lg leading-snug text-otherworld-100 lg:text-xl">
+        <p>
           {" "}
-          Design and primary colors were prototyped in Figma. Display font used is{" "}
+          Design and primary colors were first prototyped in Figma. Primary font is{" "}
           <ExtLink
             href="https://en.wikipedia.org/wiki/Atkinson_Hyperlegible"
-            last="Hyperlegible"
+            last="Hyperlegible,"
           >
             Atkinson
           </ExtLink>{" "}
-          and monospace font is IBM Plex Mono. Icons provided by{" "}
+          monospace is IBM Plex Mono. Icons provided by{" "}
           <ExtLink
             href="https://heroicons.com"
-            last="Heroicons."
-          />
+            last="Heroicons"
+          />{" "}
+          and{" "}
+          <ExtLink
+            href="https://simpleicons.org/"
+            last="Icons."
+          >
+            Simple
+          </ExtLink>
         </p>
-        <p className="text-md pb-2 text-otherworld-100 lg:text-lg">
-          <i className="font-mono">Last updated on July 13, 2023.</i>{" "}
+        <p className="pb-1.5">
+          <i className="font-mono text-base lg:text-lg">Last updated: July 14, 2023.</i>{" "}
           <span className="whitespace-nowrap">👾💜</span>
         </p>
         <LinkButton
