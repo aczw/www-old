@@ -221,7 +221,7 @@ const Content = () => {
             heading="RCW"
             imageUrl="imageUrl"
             href="https://aczw.itch.io/rcw"
-            buttonText="Play in your browser on itch.io"
+            buttonText="Play in your browser"
           >
             Unity minigame. Endlessly match colors and text together, but be quick about it.
             Gameplay is{" "}
@@ -237,7 +237,7 @@ const Content = () => {
             heading="sddm-theme-corners"
             imageUrl="imageUrl"
             href="https://github.com/aczw/sddm-theme-corners"
-            buttonText="Source on GitHub"
+            buttonText="Source code and manual"
           >
             An <em>extremely</em> customizable theme for{" "}
             <ExtLink
@@ -250,18 +250,11 @@ const Content = () => {
           <InfoCard
             heading="aczw.dev"
             imageUrl="imageUrl"
-            href="/"
-            buttonText="How meta"
+            href="https://github.com/aczw/personal-website"
+            buttonText="View source code"
           >
-            This is included here because I spent{" "}
-            <ExtLink
-              href="https://github.com/aczw/personal-website/commits/main"
-              last="long"
-            >
-              way too
-            </ExtLink>{" "}
-            on this site for it to not count as a project. Scroll down for the list of stuff I used
-            to make it.
+            This is included here because I spent <em>way too long</em> on this site for it to not
+            count as a project. Scroll down for the list of stuff I used to make it.
           </InfoCard>
           <InfoCard
             heading="tic-tac-toe"
@@ -283,16 +276,8 @@ const Content = () => {
         </div>
       </section>
       <section className="flex flex-col space-y-5 p-9 text-lg leading-snug text-otherworld-100 lg:p-12 lg:text-xl">
-        <h1 className="text-5xl font-bold text-otherworld-100 lg:text-6xl">About this site</h1>
-        <p>
-          Source code is{" "}
-          <ExtLink
-            href="https://github.com/aczw/personal-website"
-            last="GitHub."
-          >
-            available on
-          </ExtLink>
-        </p>
+        <h1 className="text-4xl font-bold text-otherworld-100 lg:text-5xl">About this site</h1>
+        <p>Currently deployed on Cloudflare Pages. Their free plan is nice.</p>
         <p>
           Made with{" "}
           <ExtLink
