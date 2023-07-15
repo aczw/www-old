@@ -20,7 +20,7 @@ const plexMono = IBM_Plex_Mono({
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <div className={`${atkinson.variable} ${plexMono.variable} font-sans`}>
+    <div className={`${atkinson.variable} ${plexMono.variable} overflow-hidden font-sans`}>
       <Component {...pageProps} />
     </div>
   );
