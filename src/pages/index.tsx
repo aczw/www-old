@@ -222,7 +222,7 @@ const InfoCard = ({
 const ImageCard = ({ imageUrl, children }: { imageUrl: string; children: React.ReactNode }) => {
   return (
     <div className="flex h-fit flex-col rounded-2xl bg-otherworld-500">
-      <div className="flex h-64 items-center justify-center rounded-b-none rounded-t-2xl bg-otherworld-400 transition-all hover:rotate-[3deg] hover:scale-150 hover:rounded-b-2xl hover:shadow-2xl">
+      <div className="flex h-64 items-center justify-center rounded-b-none rounded-t-2xl bg-otherworld-400">
         <span className="font-mono text-xl italic">{imageUrl}</span>
       </div>
       <div className="p-7 text-lg lg:text-xl">{children ?? ""}</div>
