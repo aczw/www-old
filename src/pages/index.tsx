@@ -110,7 +110,7 @@ const FlexibleHeader = () => {
           </span>
         </LinkButton>
       </div>
-      <div className="flex h-auto flex-col gap-2 bg-otherworld-500 p-9 lg:p-12">
+      <div className="flex h-auto flex-col gap-4 bg-otherworld-500 p-9 lg:p-12">
         <div className="flex flex-row items-center gap-2">
           <Link
             href="https://www.linkedin.com/in/aczw/"
@@ -161,15 +161,15 @@ const FlexibleHeader = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1">
           <ExtLink
             href="https://open.spotify.com/playlist/6ZL5YMDGizDz2jxn8IuHjU/"
-            last="to"
+            last="rotation"
           >
-            Current favorite Spotify playlist
+            Current song
           </ExtLink>
           <ExtLink
             href="https://www.last.fm/user/ashzw"
-            last="scrobbling"
+            last="history"
           >
-            See what I&apos;m
+            Scrobble
           </ExtLink>
         </div>
       </div>
@@ -192,12 +192,12 @@ const InfoCard = ({
 }) => {
   return (
     <div className="flex h-fit flex-col gap-6 overflow-hidden rounded-2xl bg-otherworld-500">
-      <h2 className="flex items-center justify-between gap-5 bg-otherworld-400 px-7 py-5 font-mono">
-        <span className="text-3xl font-bold leading-none lg:text-4xl">{heading}</span>
-        <div className="text-md w-fit rounded-full bg-otherworld-500 px-4 py-2 text-center italic lg:text-lg">
+      <div className="flex items-center justify-between gap-4 bg-otherworld-400 px-7 py-5 font-mono">
+        <h2 className="text-3xl font-bold leading-none lg:text-4xl">{heading}</h2>
+        <div className="w-fit rounded-full bg-otherworld-500 px-4 py-2 text-center text-sm italic lg:text-base">
           {date}
         </div>
-      </h2>
+      </div>
       <div className="space-y-7 px-7 pb-7">
         <p className="text-lg leading-snug lg:text-xl">{children ?? ""}</p>
         <LinkButton href={href}>
@@ -235,7 +235,9 @@ const ImageCard = ({ imageUrl, children }: { imageUrl: string; children: React.R
 const ProgrammingSection = () => {
   return (
     <section className="flex flex-col space-y-6 px-9 pt-9 text-otherworld-100 lg:space-y-8 lg:px-12 lg:pt-12">
-      <h1 className="text-5xl font-bold text-otherworld-100 lg:text-6xl">Programming</h1>
+      <h1 className="text-[42px] font-bold leading-none text-otherworld-100 lg:text-5xl">
+        Programming
+      </h1>
       <div className="grid grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-1 lg:gap-12 xl:grid-cols-2">
         <InfoCard
           heading="RCW"
@@ -251,13 +253,13 @@ const ProgrammingSection = () => {
           >
             really
           </ExtLink>{" "}
-          as I was focusing more on UI/UX. First foray into gamedev.
+          and I focused more on the UI/UX. First foray into gamedev.
         </InfoCard>
         <InfoCard
           heading="sddm-theme-corners"
           date="Jan 2023"
           href="https://github.com/aczw/sddm-theme-corners"
-          buttonText="Source code and manual"
+          buttonText="Download and instructions"
         >
           An <em>extremely</em> customizable theme for{" "}
           <ExtLink
@@ -265,7 +267,7 @@ const ProgrammingSection = () => {
             last="SDDM,"
           />{" "}
           a login manager for Linux. Didn&apos;t like any existing themes, so I made my own. Clean
-          and simple, with a focus on the wallpaper.
+          and simple.
         </InfoCard>
         <InfoCard
           heading="wikiRank"
@@ -273,14 +275,15 @@ const ProgrammingSection = () => {
           href="https://wikirank.vercel.app/"
           buttonText="Go to site"
         >
-          Paste some text (journal articles and papers) and have the{" "}
+          Enter some text (journal articles and research papers) and have the{" "}
           <ExtLink
             href="https://en.wikipedia.org/wiki/Vector_space_model"
             last="model"
           >
             vector space
           </ExtLink>{" "}
-          analyze the text and your keywords to find the most relevant Wikipedia articles.
+          analyze it, along with your keywords, to find the most relevant and explanatory Wikipedia
+          articles.
         </InfoCard>
         <InfoCard
           heading="aczw.dev"
@@ -288,8 +291,9 @@ const ProgrammingSection = () => {
           href="https://github.com/aczw/personal-website"
           buttonText="View source code"
         >
-          This is included here because I spent <em>way too long</em> on this site for it to not
-          count as a project. Scroll down for the list of stuff I used to make it.
+          This is included here because I spent <em>way too long</em> on this site for it to{" "}
+          <em>not</em> count as a project (also, I&apos;m like really really proud of it). Scroll to
+          the bottom for a list of stuff I used to make it.
         </InfoCard>
         <InfoCard
           heading="tic-tac-toe"
@@ -316,7 +320,7 @@ const ProgrammingSection = () => {
 const DesignSection = () => {
   return (
     <section className="flex flex-col space-y-6 px-9 pt-9 text-otherworld-100 lg:space-y-8 lg:px-12 lg:pt-12">
-      <h1 className="text-5xl font-bold text-otherworld-100 lg:text-6xl">Design</h1>
+      <h1 className="text-[42px] font-bold leading-none text-otherworld-100 lg:text-5xl">Design</h1>
       <div className="grid w-full grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-1 lg:gap-12 xl:grid-cols-2">
         <ImageCard imageUrl="imageUrl here...">caption here yes</ImageCard>
         <ImageCard imageUrl="imageUrl here...">caption here yes</ImageCard>
@@ -328,7 +332,9 @@ const DesignSection = () => {
 const AboutSiteSection = () => {
   return (
     <section className="flex flex-col space-y-5 p-9 text-lg leading-snug text-otherworld-100 lg:p-12 lg:text-xl">
-      <h1 className="text-4xl font-bold text-otherworld-100 lg:text-5xl">About this site</h1>
+      <h1 className="text-[42px] font-bold leading-none text-otherworld-100 lg:text-5xl">
+        About this site
+      </h1>
       <p>Currently deployed on Cloudflare Pages. Their free plan is nice.</p>
       <p>
         Made with{" "}
@@ -362,7 +368,7 @@ const AboutSiteSection = () => {
         </ExtLink>
       </p>
       <p className="pb-1.5">
-        <i className="font-mono text-base lg:text-lg">Last updated: July 14, 2023.</i>{" "}
+        <i className="font-mono text-base lg:text-lg">Last updated on July 18, 2023.</i>{" "}
         <span className="whitespace-nowrap">👾💜</span>
       </p>
       <LinkButton
