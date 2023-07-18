@@ -179,25 +179,22 @@ const FlexibleHeader = () => {
 
 const InfoCard = ({
   heading,
-  imageUrl,
   href,
   buttonText,
   children,
 }: {
   heading: string;
-  imageUrl: string;
   href: string;
   buttonText: React.ReactNode;
   children: React.ReactNode;
 }) => {
   return (
-    <div className="flex h-fit w-full flex-col rounded-2xl bg-otherworld-500">
-      <h2 className="p-7 font-mono text-3xl font-bold leading-none lg:text-4xl">{heading}</h2>
-      <div className="flex h-64 w-full items-center justify-center bg-otherworld-400">
-        <i className="font-mono text-xl">{imageUrl} here...</i>
-      </div>
-      <div className="p-7">
-        <p className="mb-6 text-lg leading-snug lg:text-xl">{children ?? ""}</p>
+    <div className="flex h-fit flex-col gap-6 overflow-hidden rounded-2xl bg-otherworld-500">
+      <h2 className="bg-otherworld-400 px-7 py-5 font-mono text-3xl font-bold leading-none lg:text-4xl">
+        {heading}
+      </h2>
+      <div className="space-y-7 px-7 pb-7">
+        <p className="text-lg leading-snug lg:text-xl">{children ?? ""}</p>
         <LinkButton href={href}>
           <span className="text-lg font-bold text-otherworld-600 group-hover:text-dash-600 lg:text-xl">
             {buttonText}
@@ -234,10 +231,9 @@ const ProgrammingSection = () => {
   return (
     <section className="flex flex-col space-y-6 px-9 pt-9 text-otherworld-100 lg:space-y-8 lg:px-12 lg:pt-12">
       <h1 className="text-5xl font-bold text-otherworld-100 lg:text-6xl">Programming</h1>
-      <div className="grid w-full grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-1 lg:gap-12 xl:grid-cols-2">
+      <div className="grid grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-1 lg:gap-12 xl:grid-cols-2">
         <InfoCard
           heading="RCW"
-          imageUrl="imageUrl"
           href="https://aczw.itch.io/rcw"
           buttonText="Play in your browser"
         >
@@ -253,7 +249,6 @@ const ProgrammingSection = () => {
         </InfoCard>
         <InfoCard
           heading="sddm-theme-corners"
-          imageUrl="imageUrl"
           href="https://github.com/aczw/sddm-theme-corners"
           buttonText="Source code and manual"
         >
@@ -266,8 +261,21 @@ const ProgrammingSection = () => {
           and simple, with a focus on the wallpaper.
         </InfoCard>
         <InfoCard
+          heading="wikiRank"
+          href="https://wikirank.vercel.app/"
+          buttonText="Go to site"
+        >
+          Paste some text (journal articles and papers) and have the{" "}
+          <ExtLink
+            href="https://en.wikipedia.org/wiki/Vector_space_model"
+            last="model"
+          >
+            vector space
+          </ExtLink>{" "}
+          analyze the text and your keywords to find the most relevant Wikipedia articles.
+        </InfoCard>
+        <InfoCard
           heading="aczw.dev"
-          imageUrl="imageUrl"
           href="https://github.com/aczw/personal-website"
           buttonText="View source code"
         >
@@ -276,7 +284,6 @@ const ProgrammingSection = () => {
         </InfoCard>
         <InfoCard
           heading="tic-tac-toe"
-          imageUrl="imageUrl"
           href="/ttt"
           buttonText={
             <>
@@ -290,21 +297,6 @@ const ProgrammingSection = () => {
             last="tutorial"
           />{" "}
           from their site. Took what I learned to build <em>this</em> site.
-        </InfoCard>
-        <InfoCard
-          heading="wikiRank"
-          imageUrl="imageUrl"
-          href="https://wikirank.vercel.app/"
-          buttonText="Go to site"
-        >
-          Paste some text (journal articles and papers) and have the{" "}
-          <ExtLink
-            href="https://en.wikipedia.org/wiki/Vector_space_model"
-            last="model"
-          >
-            vector space
-          </ExtLink>{" "}
-          analyze the text and your keywords to find the most relevant Wikipedia articles.
         </InfoCard>
       </div>
     </section>
