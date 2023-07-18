@@ -179,19 +179,24 @@ const FlexibleHeader = () => {
 
 const InfoCard = ({
   heading,
+  date,
   href,
   buttonText,
   children,
 }: {
   heading: string;
+  date: string;
   href: string;
   buttonText: React.ReactNode;
   children: React.ReactNode;
 }) => {
   return (
     <div className="flex h-fit flex-col gap-6 overflow-hidden rounded-2xl bg-otherworld-500">
-      <h2 className="bg-otherworld-400 px-7 py-5 font-mono text-3xl font-bold leading-none lg:text-4xl">
-        {heading}
+      <h2 className="flex items-center justify-between gap-5 bg-otherworld-400 px-7 py-5 font-mono">
+        <span className="text-3xl font-bold leading-none lg:text-4xl">{heading}</span>
+        <div className="text-md w-fit rounded-full bg-otherworld-500 px-4 py-2 text-center italic lg:text-lg">
+          {date}
+        </div>
       </h2>
       <div className="space-y-7 px-7 pb-7">
         <p className="text-lg leading-snug lg:text-xl">{children ?? ""}</p>
@@ -234,6 +239,7 @@ const ProgrammingSection = () => {
       <div className="grid grid-cols-1 gap-9 md:grid-cols-2 lg:grid-cols-1 lg:gap-12 xl:grid-cols-2">
         <InfoCard
           heading="RCW"
+          date="April 2023"
           href="https://aczw.itch.io/rcw"
           buttonText="Play in your browser"
         >
@@ -249,6 +255,7 @@ const ProgrammingSection = () => {
         </InfoCard>
         <InfoCard
           heading="sddm-theme-corners"
+          date="Jan 2023"
           href="https://github.com/aczw/sddm-theme-corners"
           buttonText="Source code and manual"
         >
@@ -262,6 +269,7 @@ const ProgrammingSection = () => {
         </InfoCard>
         <InfoCard
           heading="wikiRank"
+          date="May 2023"
           href="https://wikirank.vercel.app/"
           buttonText="Go to site"
         >
@@ -276,6 +284,7 @@ const ProgrammingSection = () => {
         </InfoCard>
         <InfoCard
           heading="aczw.dev"
+          date="July 2023"
           href="https://github.com/aczw/personal-website"
           buttonText="View source code"
         >
@@ -284,6 +293,7 @@ const ProgrammingSection = () => {
         </InfoCard>
         <InfoCard
           heading="tic-tac-toe"
+          date="June 2023"
           href="/ttt"
           buttonText={
             <>
