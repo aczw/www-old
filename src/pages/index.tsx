@@ -90,8 +90,8 @@ const FlexibleHeader = () => {
       </div>
       <div className="p-9 lg:p-12">
         <p className="mb-6 text-lg leading-snug text-otherworld-100 lg:text-xl">
-          Hi, my name is <b>Charles Wang.</b> Currently studying computer graphics at the University
-          of Pennsylvania. I&apos;m interested in graphics programming and design.
+          Hi, my name is <b>Charles Wang.</b> I&apos;m a computer graphics student at the University
+          of Pennsylvania interested in graphics programming and design.
         </p>
         <LinkButton href="/resume.pdf">
           <svg
