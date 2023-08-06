@@ -6,7 +6,6 @@ const atkinson = Atkinson_Hyperlegible({
   weight: ["400", "700"],
   style: ["normal", "italic"],
   subsets: ["latin", "latin-ext"],
-  preload: false,
   variable: "--font-atkinson",
 });
 
@@ -14,7 +13,6 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "700", "100", "200", "300", "500", "600"],
   style: ["normal", "italic"],
   subsets: ["latin", "latin-ext"],
-  preload: false,
   variable: "--font-plex-mono",
 });
 
