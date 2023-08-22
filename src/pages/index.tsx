@@ -335,6 +335,42 @@ const AboutSiteSection = () => {
       <h1 className="text-[42px] font-bold leading-none text-otherworld-100 lg:text-5xl">
         About this site
       </h1>
+      <div className="flex flex-col space-y-5 rounded-xl bg-dash-600 p-4 text-dash-100">
+        <p>
+          Hello! This version of my website is archived and will not be updated anymore. I became
+          too distracted to ever finish it, and decided to restart everything because using the T3
+          stack for a personal site was <em>slightly overkill.</em>
+        </p>
+        <p>
+          I&apos;ve left this site as it is, half complete and unfinished. The only things I&apos;ve
+          done is added this info box, and changed the last updated time (so the information below
+          is probably very wrong). I also moved the tic-tac-toe game to its own subdomain, which you
+          can find{" "}
+          <Link
+            href="https://ttt.aczw.dev/"
+            target="_blank"
+            className="h-min w-fit text-lg text-dash-200 underline underline-offset-2 transition hover:text-otherworld-100 lg:text-xl"
+          >
+            here.
+          </Link>
+        </p>
+        <p>
+          I won&apos;t be doing this every time I update my site; it&apos;s just that this iteration
+          is special to me because it&apos;s the first version, and I had no idea what I was doing
+          (and still don&apos;t).
+        </p>
+        <p>
+          I wonder what future me will be thinking when it looks back on past me and this site.
+          Anyway. It&apos;s currently 4:21 AM. I should sleep. And you should go back to the current
+          site{" "}
+          <Link
+            href="https://aczw.dev/"
+            className="h-min w-fit text-lg text-dash-200 underline underline-offset-2 transition hover:text-otherworld-100 lg:text-xl"
+          >
+            here!
+          </Link>
+        </p>
+      </div>
       <p>Currently deployed on Cloudflare Pages. Their free plan is nice.</p>
       <p>
         Made with{" "}
@@ -368,7 +404,7 @@ const AboutSiteSection = () => {
         </ExtLink>
       </p>
       <p className="pb-1.5">
-        <i className="font-mono text-base lg:text-lg">Last updated on July 18, 2023.</i>{" "}
+        <i className="font-mono text-base lg:text-lg">Last updated on August 22, 2023.</i>{" "}
         <span className="whitespace-nowrap">👾💜</span>
       </p>
       <LinkButton
