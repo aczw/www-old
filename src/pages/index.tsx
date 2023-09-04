@@ -347,7 +347,7 @@ const AboutSiteSection = () => {
           is probably very wrong). I also moved the tic-tac-toe game to its own subdomain, which you
           can find{" "}
           <Link
-            href="https://ttt.aczw.dev/"
+            href="https://ttt.charl.sh/"
             target="_blank"
             className="h-min w-fit text-lg text-dash-200 underline underline-offset-2 transition hover:text-otherworld-100 lg:text-xl"
           >
@@ -364,7 +364,7 @@ const AboutSiteSection = () => {
           Anyway. It&apos;s currently 4:21 AM. I should sleep. And you should go back to the current
           site{" "}
           <Link
-            href="https://aczw.dev/"
+            href="https://charl.sh/"
             className="h-min w-fit text-lg text-dash-200 underline underline-offset-2 transition hover:text-otherworld-100 lg:text-xl"
           >
             here!
@@ -404,7 +404,7 @@ const AboutSiteSection = () => {
         </ExtLink>
       </p>
       <p className="pb-1.5">
-        <i className="font-mono text-base lg:text-lg">Last updated on August 22, 2023.</i>{" "}
+        <i className="font-mono text-base lg:text-lg">Last updated on September 4, 2023.</i>{" "}
         <span className="whitespace-nowrap">👾💜</span>
       </p>
       <LinkButton
